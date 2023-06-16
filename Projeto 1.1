@@ -1,0 +1,41 @@
+#PROJETO - SisGORA#
+###PROGRAMA PRINCIPAL###
+#CHAVE DE ACESSO#
+key_master = 1
+keys = []
+key = input("Por favor, insira sua chave de acesso: ")
+if key == key_master:
+    print("01 - Menu principal")
+    print("02 - Cadastrar nova chave de acesso")
+    print("03 - Encerrar Programa")
+else:
+    while key != keys or key != key_master:
+        print("Por favor, insira uma chave válida, ou encerre o programa")
+        option = input("Deseja encerrar Programa? S/s(encerrar), N/n(não encerrar)")
+        while option != "N" or option != "n" or option != "S" or option != "s":
+            print("opção inválida, por favor, insira uma opção válida!")
+            option = input("Deseja encerrar Programa? S/s(encerrar), N/n(não encerrar)")
+        if option == "S" or option == "s":
+            print("Programa encerrado!")
+            print("Obrigado por ultilizar o Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA).")
+            print("Esperamos te ver por aqui novamente em breve!")
+        else:
+            key = input("Por favor, insira uma chave de acesso")
+if key == key_master:
+    print("01 - Menu principal")
+    print("02 - Cadastrar nova chave de acesso")
+    print("03 - Encerrar Programa")
+#MENU - PRINCIPAL#
+print("#####            #####  #####  #####  #####")
+print("#                #      #   #  #  #   #   #")
+print("#      ###  ###  #      #   #  # #    #   #")
+print("#####   #   #    #  ##  #   #  # #    #####")
+print("    #   #   ###  #   #  #   #  #  #   #   #")
+print("    #   #     #  #   #  #   #  #   #  #   #")
+print("#####  ###  ###  #####  #####  #   #  #   #")
+print("MENU PRINCIPAL - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)")
+print("01 - Clientes")
+print("02 - Colaboradores")
+print("03 - Ordens de serviços(O.S.)")
+print("04 - Administrativo")
+print("00 - Sair")
