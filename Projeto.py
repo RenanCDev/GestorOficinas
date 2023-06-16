@@ -1,0 +1,13 @@
+#Projeto - 3 unidade#
+print("#####            #####  #####  #####  #####")
+print("#                #      #   #  #  #   #   #")
+print("#      ###  ###  #      #   #  # #    #   #")
+print("#####   #   #    #  ##  #   #  # #    #####")
+print("    #   #   ###  #   #  #   #  #  #   #   #")
+print("    #   #     #  #   #  #   #  #   #  #   #")
+print("#####  ###  ###  #####  #####  #   #  #   #")
+print("MENU PRINCIPAL - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)")
+print("01 - Clientes")
+print("02 - Funcionários")
+print("03 - Administração")
+print("00 - Sair")
