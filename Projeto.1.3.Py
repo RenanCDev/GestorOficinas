@@ -49,8 +49,11 @@ def checker_cpf():
                 if d10 != 11 - rest:
                     cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
                     return cpf
-    else:
         cpf = (cpf,"CPF válido!")
+        return cpf
+    else:
+        cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+        return cpf
 def main_menu():
     os.system("clear")
     print("#####            #####  #####  #####  #####")
