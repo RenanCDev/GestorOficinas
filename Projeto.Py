@@ -4,12 +4,11 @@
 #####################
 import os
 def checker_cpf():
-    print("Digite seu CPF por favor: ")
-    cpf = input("")
+    cpf = input("Digite seu CPF por favor: ")
     cpf1 = cpf.replace(" ","")
-    cpf2 = cpf1.replace(".","")
-    cpf3 = cpf2.replace(",","")
-    cpf = cpf3.replace("-","")
+    cpf = cpf1.replace(".","")
+    cpf1 = cpf.replace(",","")
+    cpf = cpf1.replace("-","")
     validation = cpf.isdigit()
     if validation == True:
         list_cpf = list(cpf)
@@ -55,6 +54,18 @@ def checker_cpf():
     else:
         cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
         return cpf
+def checker_celular():
+    celular = input("Digite seu celular por favor: ")
+    celular1 = celular.replace(" ","")
+    celular = celular1.replace(".","")
+    celular1 = celular.replace(",","")
+    celular = celular1.replace("-","")
+    celular1 = celular.replace("(","")
+    celular = celular1.replace(")","")
+    celular1 = celular.replace("+","")
+    validation = celular1.isdigit()
+    if validation == True:
+
 def main_menu():
     os.system("clear")
     print("#####            #####  #####  #####  #####")
@@ -77,6 +88,7 @@ def main_menu():
     option = input("Escolha uma opção por favor: ")
     return option
 def clientes_menu():
+    os.system("clear")
     print("============================================================================================")
     print("=MENU CLIENTES - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)=")
     print("============================================================================================")
@@ -85,7 +97,11 @@ def clientes_menu():
     print("\t00 - Voltar ao menu anterior")
     option = input("Escolha uma opção por favor: ")
     return option
+def cadastro_cliente():
+    cpf = checker_cpf()
+
 def colaboradores_menu():
+    os.system("clear")
     print("=================================================================================================")
     print("=MENU COLABORADORES - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)=")
     print("=================================================================================================")
@@ -95,6 +111,7 @@ def colaboradores_menu():
     option = input("Escolha uma opção por favor: ")
     return option
 def os_menu():
+    os.system("clear")
     print("======================================================================================================")
     print("=MENU ORDENS DE SERVIÇOS - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)=")
     print("======================================================================================================")
@@ -105,6 +122,7 @@ def os_menu():
     option = input("Escolha uma opção por favor: ")
     return option
 def orcamentos_menu():
+    os.system("clear")
     print("=============================================================================================================")
     print("=MENU ORÇAMENTOS E AGENDAMENTOS - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)=")
     print("=============================================================================================================")
@@ -116,6 +134,7 @@ def orcamentos_menu():
     option = input("Escolha uma opção por favor: ")
     return option
 def loja_menu():
+    os.system("clear")
     print("========================================================================================")
     print("=MENU LOJA - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)=")
     print("========================================================================================")
@@ -124,6 +143,7 @@ def loja_menu():
     option = input("Escolha uma opção por favor: ")
     return option
 def administrativo_menu():
+    os.system("clear")
     print("==================================================================================================")
     print("=MENU ADMINISTRATIVO - Sistema de Gerenciamento Para Oficinas de Refrigeração Automotiva(SisGORA)=")
     print("==================================================================================================")
@@ -137,31 +157,33 @@ def administrativo_menu():
 ##################
 # MAIN - PROGRAM #
 ##################
-operation = main_menu()
-while operation != 0:
-    if operation == "1" or operation == "01":
+operation01 = main_menu()
+while operation01 != "0" or operation01 != "00":
+    if operation01 == "1" or operation01 == "01":
         print("=        MENU - Clientes selecionado        =")
-        print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
-    elif operation == "2" or operation == "02":
+        operation02 = clientes_menu()
+        while operation02 != "0" or operation02 != "00":
+            if operation02 == "1" or operation02 == "01":
+    elif operation01 == "2" or operation01 == "02":
         print("=     MENU - Colaboradores selecionado      =")
         print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
-    elif operation == "3" or operation == "03":
+    elif operation01 == "3" or operation01 == "03":
         print("=MENU - Ordens de Serviços(O.S.) selecionado=")
         print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
-    elif operation == "4" or operation == "04":
+    elif operation01 == "4" or operation01 == "04":
         print("=MENU - Oçamentos e agendamentos selecionado=")
         print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
-    elif operation == "5" or operation == "05":
+    elif operation01 == "5" or operation01 == "05":
         print("=          MENU - Loja selecionado          =")
         print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
-    elif operation == "6" or operation == "06":
+    elif operation01 == "6" or operation01 == "06":
         print("=     MENU - Administrativo selecionado     =")
         print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
-    elif operation == "0" or operation == "00":
+    elif operation01 == "0" or operation01 == "00":
         print("=             PROGRAMA ENCERRADO            =")
         print("=                ATÉ BREVE !                =")
     else:
         print("=            OPÇÃO INVÁLIDA !!!!!           =")
     input("Tecla ENTER para continuar")
-    operation = main_menu()
+    operation01 = main_menu()
 print("FIM")
