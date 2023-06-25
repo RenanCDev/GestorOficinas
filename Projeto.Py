@@ -373,7 +373,7 @@ while operation01 != "0" or operation01 != "00":
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "7" or operation02 == "07":
-                print("== PESQUUISAR - CADASTROS DE DEBITOS ==")
+                print("== PESQUISA - CADASTROS DE DEBITOS ==")
                 pesquisa = p_debito()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
