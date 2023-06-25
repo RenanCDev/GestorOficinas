@@ -229,14 +229,16 @@ def p_debito():
 operation01 = main_menu()
 while operation01 != "0" or operation01 != "00":
     if operation01 == "1" or operation01 == "01":
-        print("=        MENU - Clientes selecionado        =")
+        print("== MENU - Clientes selecionado ==")
         operation02 = clientes_menu()
         while operation02 != "0" or operation02 != "00":
             if operation02 == "1" or operation02 == "01":
+                print("== CADASTRO - NOVO CLIENTE ==")
                 cadastro = cadastro_cliente()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation01 == "2" or operation02 == "02":
+                print("== PESQUISAR - CADASTROS DE CLIENTES ==")
                 pesquisa = p_cadastro_cliente()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
@@ -247,14 +249,16 @@ while operation01 != "0" or operation01 != "00":
         input("Tecle ENTER para continuar")
         operation01 = main_menu()
     elif operation01 == "2" or operation01 == "02":
-        print("=     MENU - Colaboradores selecionado      =")
+        print("== MENU - Colaboradores selecionado ==")
         operation02 = colaboradores_menu()
         while operation02 != "0" or operation02 != "00":    
             if operation02 == "1" or operation02 == "01":
+                print("== CADASTRO - NOVO COLABORADOR ==")
                 cadastro = cadastro_colaborador()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "2" or operation02 == "02":
+                print("== PESQUISAR - CADASTROS DE COLABORADORES ==")
                 pesquisa = p_cadastro_colaborador()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
@@ -265,18 +269,21 @@ while operation01 != "0" or operation01 != "00":
         input("Tecle ENTER para continuar")
         operation01 = main_menu()
     elif operation01 == "3" or operation01 == "03":
-        print("=MENU - Ordens de Serviços(O.S.) selecionado=")
+        print("== MENU - Ordens de Serviços(O.S.) selecionado ==")
         operation02 = os_menu()
         while operation02 != "0" or operation02 != "00":
             if operation02 == "1" or operation02 == "01":
+                print("== CADASTRO - NOVA ORDEM DE SERVICO ==")
                 cadastro = cadastro_os()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "2" or operation01 == "02":
+                print("== PESQUISAR - OSs ABERTAS ==")
                 pesquisa = p_os_aberta()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "3" or operation02 == "03":
+                print("== PESQUISAR - OSs FECHADAS ==")
                 pesquisa = p_os_fechada()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
@@ -287,22 +294,26 @@ while operation01 != "0" or operation01 != "00":
         input("Tecle ENTER para continuar")
         operation01 = main_menu()
     elif operation01 == "4" or operation01 == "04":
-        print("=MENU - Oçamentos e agendamentos selecionado=")
+        print("== MENU - Oçamentos e agendamentos selecionado ==")
         operation02 = orcamentos_menu()
         while operation02 != "0" or operation02 != "00":
             if operation02 == "1" or operation02 == "01":
+                print("== CADASTRO - NOVO ORÇAMENTO ==")
                 cadastro = cadastro_orcamento()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu
             elif operation02 == "2" or operation02 == "02":
+                print("== PESQUISAR - CADASTROS DE ORÇAMENTOS ==")
                 pesquisa = p_orcamento()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu
             elif operation02 == "3" or operation02 == "03":
+                print("== CADASTRO - AGENDAMENTO ==")
                 cadastro = cadastro_agendamento()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu
             elif operation02 == "4" or operation01 == "04":
+                print("== PESQUISAR - CADASTROS DE AGENDAMENTOS ==")
                 pesquisa = p_agendamento
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu
@@ -313,10 +324,11 @@ while operation01 != "0" or operation01 != "00":
         input("Tecle ENTER para continuar")
         operation01 = main_menu()
     elif operation01 == "5" or operation01 == "05":
-        print("=          MENU - Loja selecionado          =")
+        print("== MENU - Loja selecionado ==")
         operation02 = loja_menu()
         while operation02 != "0" or operation02 != "00":
             if operation02 == "1" or operation02 == "01":
+                print("== CADASTRO - NOVA VENDA ==")
                 cadastro = cadastro_venda
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
@@ -327,34 +339,41 @@ while operation01 != "0" or operation01 != "00":
         input("Tecle ENTER para continuar")
         operation01 = main_menu()
     elif operation01 == "6" or operation01 == "06":
-        print("=     MENU - Administrativo selecionado     =")
+        print("== MENU - Administrativo selecionado ==")
         operation02 = administrativo_menu()
         while operation02 != "0" or operation02 != "00":
             if operation02 == "1" or operation02 == "01":
+                print("== CADASTRO - NOVO PEDIDO ==")
                 cadastro = cadastro_pedido()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "2" or operation02 == "02":
+                print("== PESQUISAR - PEDIDOS ==")
                 pesquisa = p_pedido()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "3" or operation02 == "03":
+                print("== PESQUISAR - VENDAS ==")
                 pesquisa = p_venda()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "4" or operation02 == "04":
+                print("== BAIXAR - COMISSÃO ==")
                 comissao = baixar_comissao()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "5" or operation02 == "05":
+                print("== PESQUISA - CADASTROS DE COMISSÃO ==")
                 pesquisa = p_comissao()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "6" or operation02 == "06":
+                print("== CADASTRO - NOVO DÉBITO ==")
                 cadastro = cadastrar_debito()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
             elif operation02 == "7" or operation02 == "07":
+                print("== PESQUUISAR - CADASTROS DE DEBITOS ==")
                 pesquisa = p_debito()
                 input("Tecle ENTER para continuar")
                 operation01 = main_menu()
@@ -364,11 +383,9 @@ while operation01 != "0" or operation01 != "00":
                 operation01 = main_menu()
         input("Tecle ENTER para continuar")
         operation01 = main_menu()
-    elif operation01 == "0" or operation01 == "00":
-        print("=             PROGRAMA ENCERRADO            =")
-        print("=                ATÉ BREVE !                =")
     else:
         print("=            OPÇÃO INVÁLIDA !!!!!           =")
     input("Tecle ENTER para continuar")
     operation01 = main_menu()
-print("FIM")
+print("=             PROGRAMA ENCERRADO            =")
+print("=                ATÉ BREVE !                =")
