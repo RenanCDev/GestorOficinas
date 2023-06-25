@@ -13,7 +13,8 @@ def checker_cpf():
     if validation == True:
         list_cpf = list(cpf)
         if len(list_cpf) != 11:
-            cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+            print("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+            cpf = checker_cpf
             return cpf
         else:
             d10 = list_cpf[10]
@@ -30,7 +31,8 @@ def checker_cpf():
             total = d08 + d07 + d06 + d05 + d04 + d03 + d02 + d01 + d00
             rest = total % 11
             if d09 != 11 - rest:
-                cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+                print("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+                cpf = checker_cpf
                 return cpf
             else:
                 d10 = list_cpf[10]
@@ -47,14 +49,18 @@ def checker_cpf():
                 total = d09 + d08 + d07 + d06 + d05 + d04 + d03 + d02 + d01 + d00
                 rest = total % 11
                 if d10 != 11 - rest:
-                    cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+                    print("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+                    cpf = checker_cpf
                     return cpf
-        cpf = (cpf,"CPF válido!")
+        cpf = cpf
+        print("CPF válido!")
         return cpf
     else:
-        cpf = input("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+        print("CPF INVÁLIDO!!! Insira um CPF válido, por favor:")
+        cpf = checker_cpf()
         return cpf
 def checker_celular():
+    print("O celular deve estar com o DDD Ex.: (XX)XXXXX-XXXX ")
     celular = input("Digite seu celular por favor: ")
     celular1 = celular.replace(" ","")
     celular = celular1.replace(".","")
@@ -63,9 +69,16 @@ def checker_celular():
     celular1 = celular.replace("(","")
     celular = celular1.replace(")","")
     celular1 = celular.replace("+","")
-    validation = celular1.isdigit()
-    if validation == True:
-
+    celular = celular1
+    validation = celular.isdigit()
+    list_celular = list(celular)
+    if validation == True and len(list_celular) == 11:
+        print("Celular válidado com sucesso")
+        return celular
+    else:
+        print("CELULAR INVÁLIDO!!!")
+        celular = checker_celular
+        return celular
 def main_menu():
     os.system("clear")
     print("#####            #####  #####  #####  #####")
@@ -98,8 +111,13 @@ def clientes_menu():
     option = input("Escolha uma opção por favor: ")
     return option
 def cadastro_cliente():
+    os.system("clear")
     cpf = checker_cpf()
-
+    celular = checker_celular()
+    print("EM DESENVOLVIMENTO!")
+def p_cadastro_cliente():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
 def colaboradores_menu():
     os.system("clear")
     print("=================================================================================================")
@@ -110,6 +128,12 @@ def colaboradores_menu():
     print("\t00 - Voltar ao menu anterior")
     option = input("Escolha uma opção por favor: ")
     return option
+def cadastro_colaborador():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_cadastro_colaborador():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
 def os_menu():
     os.system("clear")
     print("======================================================================================================")
@@ -121,6 +145,15 @@ def os_menu():
     print("\t00 - Voltar ao menu anterior")
     option = input("Escolha uma opção por favor: ")
     return option
+def cadastro_os():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_os_aberta():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_os_fechada():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
 def orcamentos_menu():
     os.system("clear")
     print("=============================================================================================================")
@@ -133,6 +166,18 @@ def orcamentos_menu():
     print("\t00 - Voltar ao menu anterior")
     option = input("Escolha uma opção por favor: ")
     return option
+def cadastro_orcamento():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_orcamento():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def cadastro_agendamento():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_agendamento():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
 def loja_menu():
     os.system("clear")
     print("========================================================================================")
@@ -142,6 +187,9 @@ def loja_menu():
     print("\t00 - Voltar ao menu anterior")
     option = input("Escolha uma opção por favor: ")
     return option
+def cadastro_venda():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
 def administrativo_menu():
     os.system("clear")
     print("==================================================================================================")
@@ -154,6 +202,27 @@ def administrativo_menu():
     print("\t00 - Voltar ao menu anterior")
     option = input("Escolha uma opção por favor: ")
     return option
+def cadastro_pedido():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_pedido():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_venda():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def baixar_comissao():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_comissao():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def cadastrar_debito():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
+def p_debito():
+    os.system("clear")
+    print("EM DESENVOLVIMENTO!")
 ##################
 # MAIN - PROGRAM #
 ##################
@@ -164,26 +233,142 @@ while operation01 != "0" or operation01 != "00":
         operation02 = clientes_menu()
         while operation02 != "0" or operation02 != "00":
             if operation02 == "1" or operation02 == "01":
+                cadastro = cadastro_cliente()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation01 == "2" or operation02 == "02":
+                pesquisa = p_cadastro_cliente()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            else:
+                print("OPÇÃO INVÁLIDA!!!")
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+        input("Tecle ENTER para continuar")
+        operation01 = main_menu()
     elif operation01 == "2" or operation01 == "02":
         print("=     MENU - Colaboradores selecionado      =")
-        print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
+        operation02 = colaboradores_menu()
+        while operation02 != "0" or operation02 != "00":    
+            if operation02 == "1" or operation02 == "01":
+                cadastro = cadastro_colaborador()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "2" or operation02 == "02":
+                pesquisa = p_cadastro_colaborador()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            else:
+                print("OPÇÃO INVÁLIDA!!!")
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+        input("Tecle ENTER para continuar")
+        operation01 = main_menu()
     elif operation01 == "3" or operation01 == "03":
         print("=MENU - Ordens de Serviços(O.S.) selecionado=")
-        print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
+        operation02 = os_menu()
+        while operation02 != "0" or operation02 != "00":
+            if operation02 == "1" or operation02 == "01":
+                cadastro = cadastro_os()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "2" or operation01 == "02":
+                pesquisa = p_os_aberta()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "3" or operation02 == "03":
+                pesquisa = p_os_fechada()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            else:
+                print("OPÇÃO INVÁLIDA!!!")
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+        input("Tecle ENTER para continuar")
+        operation01 = main_menu()
     elif operation01 == "4" or operation01 == "04":
         print("=MENU - Oçamentos e agendamentos selecionado=")
-        print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
+        operation02 = orcamentos_menu()
+        while operation02 != "0" or operation02 != "00":
+            if operation02 == "1" or operation02 == "01":
+                cadastro = cadastro_orcamento()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu
+            elif operation02 == "2" or operation02 == "02":
+                pesquisa = p_orcamento()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu
+            elif operation02 == "3" or operation02 == "03":
+                cadastro = cadastro_agendamento()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu
+            elif operation02 == "4" or operation01 == "04":
+                pesquisa = p_agendamento
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu
+            else:
+                print("OPÇÃO INVÁLIDA!!!")
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+        input("Tecle ENTER para continuar")
+        operation01 = main_menu()
     elif operation01 == "5" or operation01 == "05":
         print("=          MENU - Loja selecionado          =")
-        print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
+        operation02 = loja_menu()
+        while operation02 != "0" or operation02 != "00":
+            if operation02 == "1" or operation02 == "01":
+                cadastro = cadastro_venda
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            else:
+                print("OPÇÃO INVÁLIDA!!!")
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+        input("Tecle ENTER para continuar")
+        operation01 = main_menu()
     elif operation01 == "6" or operation01 == "06":
         print("=     MENU - Administrativo selecionado     =")
-        print("=   EM DESENVOLVIMENTO, VOLTE EM BREVE !    =")
+        operation02 = administrativo_menu()
+        while operation02 != "0" or operation02 != "00":
+            if operation02 == "1" or operation02 == "01":
+                cadastro = cadastro_pedido()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "2" or operation02 == "02":
+                pesquisa = p_pedido()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "3" or operation02 == "03":
+                pesquisa = p_venda()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "4" or operation02 == "04":
+                comissao = baixar_comissao()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "5" or operation02 == "05":
+                pesquisa = p_comissao()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "6" or operation02 == "06":
+                cadastro = cadastrar_debito()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            elif operation02 == "7" or operation02 == "07":
+                pesquisa = p_debito()
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+            else:
+                print("OPÇÃO INVÁLIDA!!!")
+                input("Tecle ENTER para continuar")
+                operation01 = main_menu()
+        input("Tecle ENTER para continuar")
+        operation01 = main_menu()
     elif operation01 == "0" or operation01 == "00":
         print("=             PROGRAMA ENCERRADO            =")
         print("=                ATÉ BREVE !                =")
     else:
         print("=            OPÇÃO INVÁLIDA !!!!!           =")
-    input("Tecla ENTER para continuar")
+    input("Tecle ENTER para continuar")
     operation01 = main_menu()
 print("FIM")
