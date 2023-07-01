@@ -13,7 +13,10 @@ oS = {}
 
 
 def checker_cpf_br(cpf):
-    cpf.replace(" ","").replace(".","").replace(",","").replace("-","")
+    cpf = cpf.replace(" ","")
+    cpf = cpf.replace(".","")
+    cpf = cpf.replace(",","")
+    cpf = cpf.replace("-","")
     list_cpf = list(cpf) 
     if len(list_cpf) != 11:
             return False
