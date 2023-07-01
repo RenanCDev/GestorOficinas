@@ -15,23 +15,22 @@ oS = {}
 def checker_cpf_br(cpf):
     cpf.replace(" ","").replace(".","").replace(",","").replace("-","")
     list_cpf = list(cpf) 
-    d10 = int(list_cpf[10])
-    d09 = int(list_cpf[9])
-    d08 = 2*int(list_cpf[8])
-    d07 = 3*int(list_cpf[7])
-    d06 = 4*int(list_cpf[6])
-    d05 = 5*int(list_cpf[5])
-    d04 = 6*int(list_cpf[4])
-    d03 = 7*int(list_cpf[3])
-    d02 = 8*int(list_cpf[2])
-    d01 = 9*int(list_cpf[1])
-    d00 = 10*int(list_cpf[0])
-    validation = cpf.isdigit()
-    if validation == True:
-        if len(list_cpf) != 11:
+    if len(list_cpf) != 11:
             return False
-        else:
-            #10, 11 =0#
+    else:
+        d10 = int(list_cpf[10])
+        d09 = int(list_cpf[9])
+        d08 = 2*int(list_cpf[8])
+        d07 = 3*int(list_cpf[7])
+        d06 = 4*int(list_cpf[6])
+        d05 = 5*int(list_cpf[5])
+        d04 = 6*int(list_cpf[4])
+        d03 = 7*int(list_cpf[3])
+        d02 = 8*int(list_cpf[2])
+        d01 = 9*int(list_cpf[1])
+        d00 = 10*int(list_cpf[0])
+        validation = cpf.isdigit()
+        if validation == True:
             total = d08 + d07 + d06 + d05 + d04 + d03 + d02 + d01 + d00
             rest = total % 11
             comp = 11 - rest
@@ -52,7 +51,7 @@ def checker_cpf_br(cpf):
                     d00 = 11*int(list_cpf[0])
                     total = d09 + d08 + d07 + d06 + d05 + d04 + d03 + d02 + d01 + d00
                     rest = total % 11
-                    comp = 11- rest
+                    comp = 11 - rest
                     if rest != 0 and rest!= 1:
                         if d10 != comp:
                             return False
@@ -61,10 +60,10 @@ def checker_cpf_br(cpf):
                     else:
                         return False
             else:
-                return False            
-    else:
-        return False
-    
+                return False   
+        else:
+            return False         
+
 
 
 def checker_cel_br(cel):
@@ -74,14 +73,21 @@ def checker_cel_br(cel):
                 32, 33, 34, 35, 37, 38, 21, 22, 24, 11, 12, 13,
                 14, 15, 16, 17, 18, 19, 41, 42, 43, 44, 45, 46,
                 51, 53, 54, 55, 47, 48, 49]
-    list_cel = list(cel)
-    ddd = int(list_cel[0] + list_cel[1])
-    cel.replace(" ","").replace(".","").replace(",","").replace("-","").replace("(","").replace(")","").replace("+","")
     validation = cel.isdigit()
-    if validation == True and len(list_cel) == 11:
-        if ddd in list_ddd:
-            if list_cel[2] == "9":
-                return True
+    if validation == True:
+        list_cel = list(cel)
+        if len(list_cel) == 11:
+            ddd = int(list_cel[0] + list_cel[1])
+            cel = cel.replace(" ","")
+            cel = cel.replace(".","")
+            cel = cel.replace(",","")
+            cel = cel.replace("-","")
+            cel = cel.replace("(","")
+            cel = cel.replace(")","")
+            cel = cel.replace("+","")
+            if ddd in list_ddd:
+                    if list_cel[2] == "9":
+                        return True
             else:
                 return False
         else:
@@ -92,13 +98,12 @@ def checker_cel_br(cel):
 
 
 def checker_name(name):
-    name.upper().replace(" ","").replace(".","").replace(",","").replace("!","").replace("?","").replace(":","")
+    name = name.replace(" ","")
     validation = name.isalpha()
     if validation == True:
         return True
     else:
         return False
-
 
 
 def main_menu():
@@ -137,6 +142,7 @@ def menu_clientes():
     print("\t1 - Novo cadastro")
     print("\t2 - Pesquisar cadastro")
     print("\t0 - Voltar ao menu anterior")
+    print ()
     op = input("Escolha uma opção por favor: ")
     return op
 
@@ -155,11 +161,14 @@ def cad_clientes():
     verif = checker_cpf_br(cpf)
     while verif != True:
         os.system("clear")
-        cpf = input("CPF inválido! Digite novamente: ")
+        print("CPF inválido! Digite novamente.")
+        print()
+        cpf = input("CPF: ")
         verif = checker_cpf_br(cpf)
     os.system("clear")
     print("Por favor, digite seu celular.")
     print("Exemplo: DD N NNNN NNNN.")
+    print()
     print("D = DDD do estado.")
     print("N = Número do celular.") 
     print()
@@ -168,10 +177,13 @@ def cad_clientes():
     while verif != True:
         os.system("clear")
         print("Exemplo: DD N NNNN NNNN.")
+        print()
         print("D = DDD do estado.")
         print("N = Número do celular.")        
         print()
-        cel = input("Celular inválido! Digite novamente: ")
+        print("Celular inválido! Digite novamente.")
+        print()
+        cel = input("Cel.: ")
         verif = checker_cel_br(cel)
     os.system("clear")
     print("Por favor, insira o seu nome completo")
@@ -181,12 +193,13 @@ def cad_clientes():
     verif = checker_name(name)
     while verif != True:
         os.system("clear")
-        print("Apenas letras.")
+        print("Nome inválido! Digite novamente.")
         print()
-        name = input("Nome inválido! Digite novamente: ")
+        name = input("Nome: ")
         verif = checker_name(name)
     os.system("clear")
     print("Por favor, digite sua data de nascimento")    
+    print()
     print("Exemplo: DDMMAAAA")
     print("D = dia. ")
     print("M = mês. ")
@@ -194,6 +207,7 @@ def cad_clientes():
     print()
     nasc = input("Data de nascimento: ")
     os.system("clear")
+    name = name.upper()
     clientes[cpf] = [cel, nasc, name]  
     print("Cadastro realizado com sucesso!")
     input("Tecle ENTER para continuar")
@@ -206,7 +220,9 @@ def p_clientes():
     print("\t| PESQUISA - CADASTROS DE CLIENTES |")
     print("\t+----------------------------------+")
     print()
-    cpf = input("Por favor, digite o CPF que deseja localizar: ")
+    print("Por favor, digite o CPF que deseja localizar: ")
+    print()
+    cpf = input("CPF: ")
     if cpf in clientes:
         os.system("clear")
         print("CPF: ", cpf)
@@ -235,6 +251,9 @@ def p_clientes():
             op = input("Qual operação você deseja fazer?")
         if op == "1":
             os.system("clear")
+            cel = clientes[cpf][0]
+            nasc = clientes[cpf][1]
+            name = clientes[cpf][2]
             print("CPF: ", cpf)
             print("Cel: ", clientes[cpf][0])
             print("Data de nascimento: ", clientes[cpf][1])
@@ -254,6 +273,7 @@ def p_clientes():
             if edit == "s":
                 os.system("clear")
                 print("Novo celular: ")
+                print()
                 print("Exemplo: DD N NNNN NNNN.")
                 print("D = DDD do estado.")
                 print("N = Número do celular.") 
@@ -266,12 +286,14 @@ def p_clientes():
                     print("D = DDD do estado.")
                     print("N = Número do celular.")      
                     print()              
-                    cel = input("Celular inválido! Digite novamente: ")
+                    print("Celular inválido! Digite novamente.")
+                    cel = input("Cel.: ")
                     verif = checker_cel_br(cel)
             else:
-                os.system("clear")
+                print()
+            os.system("clear")
             print("CPF: ", cpf)
-            print("Cel: ", clientes[cpf][0])
+            print("Cel: ", cel)
             print("Data de nascimento: ", clientes[cpf][1])
             print("Nome: ", clientes[cpf][2])   
             print()             
@@ -281,12 +303,13 @@ def p_clientes():
                 print("Opção inválida!")                
                 print()
                 print("CPF: ", cpf)
-                print("Cel: ", clientes[cpf][0])
+                print("Cel: ", cel)
                 print("Data de nascimento: ", clientes[cpf][1])
                 print("Nome: ", clientes[cpf][2])
                 print()
                 edit = input("Deseja alterar o nome? (s/n)")
             if edit == "s":
+                os.system("clear")
                 print("Por favor, insira o seu nome completo")
                 print("Apenas letras.")
                 print()
@@ -298,12 +321,14 @@ def p_clientes():
                     print()
                     name = input("Nome inválido! Digite novamente: ")
                     verif = checker_name(name)
+                name = name.upper()
             else:
-                os.system("clear")
+                print()
+            os.system("clear")
             print("CPF: ", cpf)
-            print("Cel: ", clientes[cpf][0])
+            print("Cel: ", cel)
             print("Data de nascimento: ", clientes[cpf][1])
-            print("Nome: ", clientes[cpf][2])
+            print("Nome: ", name)
             print()
             edit = input("Deseja alterar sua data de nascimento? (s/n)")
             while edit != "s" and edit != "n":
@@ -311,13 +336,15 @@ def p_clientes():
                 print("Opção inválida!")
                 print()
                 print("CPF: ", cpf)
-                print("Cel: ", clientes[cpf][0])
+                print("Cel: ", cel)
                 print("Data de nascimento: ", clientes[cpf][1])
-                print("Nome: ", clientes[cpf][2])
+                print("Nome: ", name)
                 print()
                 edit = input("Deseja alterar a data de nascimento? (s/n)")
             if edit == "s":
+                os.system("clear")
                 print("Por favor, digite sua data de nascimento")    
+                print()
                 print("Exemplo: DDMMAAAA")
                 print("D = dia. ")
                 print("M = mês. ")
@@ -325,11 +352,16 @@ def p_clientes():
                 print()
                 nasc = input("Nova data de nascimento: ")
             else:
-                os.system("clear")
-            clientes[cpf] = [cel, nasc, name]
+                print()
+            name = name.upper()
+            os.system("clear")
             print("Cadastro alterado com sucesso!")
+            clientes[cpf] = [cel, nasc, name]
         elif op == "2":
             os.system("clear")
+            cel = clientes[cpf][0]
+            nasc = clientes[cpf][1]
+            name = clientes[cpf][2]
             print("CPF: ", cpf)
             print("Cel: ", clientes[cpf][0])
             print("Data de nascimento: ", clientes[cpf][1])
@@ -347,14 +379,18 @@ def p_clientes():
                 print()
                 exc = input("Deseja mesmo excluir esse perfil? (s/n)")
             if exc == "s":
+                os.system("clear")
                 del(clientes[cpf])
                 print("Perfil excluido com sucesso!")
                 input("Tecle ENTER para continuar")
             else:
-                os.system("clear")
+                print()
         else:
-            os.system("clear")
-    input("Tecle ENTER para continuar")
+            print()
+    else:
+        os.system("clear")
+        print("Cadastro inexistente!")
+        input("Tecle ENTER para continuar")
 
 
 
