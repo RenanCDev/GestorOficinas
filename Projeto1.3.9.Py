@@ -8,6 +8,7 @@ from unicodedata import name
 
 clientes = {}
 colaboradores = {}
+orcamentos = {}
 oS = {}
 
 
@@ -685,11 +686,13 @@ def cad_orc():
     print()
     print("Por favor, digite o CPF cadastrado.")
     print("Insira apenas números.")
+    print()
     cpf = input("CPF: ")
     verify = checker_cpf_br(cpf)
     while verify != True:
         os.system("clear")
         print("CPF inválido! Digite novamente.")
+        print("Caso deseje voltar ao menu anterior, pressione ENTER.")
         print()
         cpf = input("CPF: ")
         verif = checker_cpf_br(cpf)
@@ -715,18 +718,46 @@ def cad_orc():
         servic = input("Descreva o serviço: ")
         servic = servic.upper()
         os.system("clear")
-        print("Insira o valor")
+        print("Por favor, insira o valor do serviço.")
+        print("Apenas números inteiros.")
+        val_servic = int(input("Valor: "))
+        os.system("clear")
+        print("Por favor, insira o valor da mão de obra.")
+        print("Apenas números inteiros.")
+        val_m_obra = int(input("Valor: "))
+        orcamentos[cpf] = [model, id, problem, servic, val_servic, val_m_obra]
 
 
 
 def p_orc():
     os.system("clear")
-    print("\t+------------------------------------+")
-    print("\t| PESQUISA - CADASTROS DE ORÇAMENTOS |")
-    print("\t+------------------------------------+")
+    print("\t+-----------------------+")
+    print("\t| PESQUISA - ORÇAMENTOS |")
+    print("\t+-----------------------+")
     print()
-    print("EM DESENVOLVIMENTO!")
-    input("Tecle ENTER para continuar")
+    print("\t1 - Pesquisar por CPF.")
+    print("\t2 - pesquisar por identificador.")
+    print("\t3 - Pesquisar por celular")
+    print("\t0 - voltar ao menu anterior.")
+    op = input("O qe deseja fazer ?")
+    while op != "0":
+        if op == "1":
+            os.system("clear")
+            print("Por favor, insira o CPF")
+            print("Apenas números.")
+            cpf = ("CPF: ")
+            verif = checker_cpf_br(cpf)
+            while verif != True:
+                os.system("clear")
+                print("CPF INVÁLIDO!!!")
+                print("insira um cpf válido.")
+                print()
+                cpf = input("CPF: ")
+                verif = checker_cel_br(cpf)
+            if cpf in clientes:
+                if cpf in orcamentos:
+                    print(orcamentos[cpf])
+
 
 
 
