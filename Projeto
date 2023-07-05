@@ -15,10 +15,6 @@ os_fechada = {}
 
 
 def checker_cpf_br(cpf):
-    cpf = cpf.replace(" ","")
-    cpf = cpf.replace(".","")
-    cpf = cpf.replace(",","")
-    cpf = cpf.replace("-","")
     list_cpf = list(cpf) 
     if len(list_cpf) != 11:
             return False
@@ -83,13 +79,6 @@ def checker_cel_br(cel):
         list_cel = list(cel)
         if len(list_cel) == 11:
             ddd = int(list_cel[0] + list_cel[1])
-            cel = cel.replace(" ","")
-            cel = cel.replace(".","")
-            cel = cel.replace(",","")
-            cel = cel.replace("-","")
-            cel = cel.replace("(","")
-            cel = cel.replace(")","")
-            cel = cel.replace("+","")
             if ddd in list_ddd:
                     if list_cel[2] == "9":
                         return True
@@ -109,6 +98,41 @@ def checker_name(name):
         return True
     else:
         return False
+    
+
+
+def data(va):
+    va = va.replace(" ","")
+    va = va.replace(".","")
+    va = va.replace(",","")
+    va = va.replace("-","")
+    va = va.replace("(","")
+    va = va.replace(")","")
+    va = va.replace("/","")
+    va = va.replace("+","")
+    va = va.upper()
+    return va
+
+
+
+def prt_orc():
+    cpf = orcamentos[id][0], print("CPF: ",cpf)
+    print()
+    model = orcamentos[id][1], print("Modelo: ",model)
+    print()
+    id = orcamentos[id][2], print("Identificador: ",id)
+    print()
+    problem = orcamentos[id][3], print("Problema: ", problem)
+    print()
+    servic = orcamentos[id][4], print("Serviço: ",servic)
+    print()
+    val_servic = orcamentos[id][5], print("Valor do serviço: ", val_servic)
+    print()
+    val_m_obra = orcamentos[id][6], print("Valor da mão de obra: ", val_m_obra)
+    print()
+    mec = orcamentos[id][7], print("Mecânico: ", mec)
+    print()
+
 
 
 def main_menu():
@@ -162,7 +186,7 @@ def cad_clientes():
     print("Por favor, digite o CPF.")
     print("Insira apenas números.")
     print()
-    cpf = input("CPF: ")
+    cpf = input(data(("CPF: ")))
     #verif = checker_cpf_br(cpf)#
     #while verif != True:
     #    os.system("clear")
@@ -177,7 +201,7 @@ def cad_clientes():
     print("D = DDD do estado.")
     print("N = Número do celular.") 
     print()
-    cel = input("Celular: ")
+    cel = input(data(("Celular: ")))
     #verif = checker_cel_br(cel)#
     #while verif != True:
     #    os.system("clear")
@@ -202,6 +226,7 @@ def cad_clientes():
     #    print()
     #    name = input("Nome: ")
     #    verif = checker_name(name)
+    name = name.upper()
     os.system("clear")
     print("Por favor, digite a data de nascimento")    
     print()
@@ -210,9 +235,8 @@ def cad_clientes():
     print("M = mês. ")
     print("A = ano. ")
     print()
-    nasc = input("Data de nascimento: ")
+    nasc = input(data(("Data de nascimento: ")))
     os.system("clear")
-    name = name.upper()
     clientes[cpf] = [cel, nasc, name]  
     print("Cadastro realizado com sucesso!")
     input("Tecle ENTER para continuar")
@@ -227,7 +251,7 @@ def p_clientes():
     print()
     print("Por favor, digite o CPF que deseja localizar: ")
     print()
-    cpf = input("CPF: ")
+    cpf = input(data(("CPF: ")))
     if cpf in clientes:
         os.system("clear")
         print("CPF: ", cpf)
@@ -283,7 +307,7 @@ def p_clientes():
                 print("D = DDD do estado.")
                 print("N = Número do celular.") 
                 print()
-                cel = input("Celular: ")
+                cel = input(data(("Celular: ")))
                 #verif = checker_cel_br(cel)
                 #while verif != True:
                 #    os.system("clear")
@@ -326,7 +350,7 @@ def p_clientes():
                 #    print()
                 #    print("Nome inválido! Digite novamente.")
                 #    name = input("Nome: ")
-                #    verif = checker_name(name)
+                #    verif = checker_name(name
                 name = name.upper()
             else:
                 print()
@@ -356,10 +380,7 @@ def p_clientes():
                 print("M = mês. ")
                 print("A = ano. ")
                 print()
-                nasc = input("Nova data de nascimento: ")
-            else:
-                print()
-            name = name.upper()
+                nasc = input(data(("Nova data de nascimento: ")))
             os.system("clear")
             print("Cadastro alterado com sucesso!")
             clientes[cpf] = [cel, nasc, name]
@@ -424,7 +445,7 @@ def cad_colab():
     print("Por favor, digite o CPF.")
     print("Insira apenas números.")
     print()
-    cpf = input("CPF: ")
+    cpf = input(data(("CPF: ")))
     #verif = checker_cpf_br(cpf)
     #while verif != True:
     #    os.system("clear")
@@ -439,7 +460,7 @@ def cad_colab():
     print("D = DDD do estado.")
     print("N = Número do celular.") 
     print()
-    cel = input("Celular: ")
+    cel = input(data(("Celular: ")))
     #verif = checker_cel_br(cel)
     #while verif != True:
     #    os.system("clear")
@@ -464,6 +485,7 @@ def cad_colab():
     #    print()
     #    name = input("Nome: ")
     #    verif = checker_name(name)
+    name = name.upper()
     os.system("clear")
     print("Por favor, digite a data de nascimento")    
     print()
@@ -472,9 +494,8 @@ def cad_colab():
     print("M = mês. ")
     print("A = ano. ")
     print()
-    nasc = input("Data de nascimento: ")
+    nasc = input(data(("Data de nascimento: ")))
     os.system("clear")
-    name = name.upper()
     colaboradores[cpf] = [cel, nasc, name]  
     print("Cadastro realizado com sucesso!")
 
@@ -488,7 +509,7 @@ def p_colab():
     print()
     print("Por favor, digite o CPF que deseja localizar: ")
     print()
-    cpf = input("CPF: ")
+    cpf = input(data(("CPF: ")))
     if cpf in colaboradores:
         os.system("clear")
         print("CPF: ", cpf)
@@ -545,7 +566,7 @@ def p_colab():
                 print("D = DDD do estado.")
                 print("N = Número do celular.") 
                 print()
-                cel = input("Celular: ")
+                cel = input(data(("Celular: ")))
                 #verif = checker_cel_br(cel)
                 #while verif != True:
                 #    os.system("clear")
@@ -556,8 +577,6 @@ def p_colab():
                 #    print("Celular inválido! Digite novamente.")
                 #    cel = input("Cel.: ")
                 #    verif = checker_cel_br(cel)
-            else:
-                print()
             os.system("clear")
             print("CPF: ", cpf)
             print("Cel: ", cel)
@@ -587,8 +606,6 @@ def p_colab():
                 #    name = input("Nome: ")
                 #    verif = checker_name(name)
                 name = name.upper()
-            else:
-                print()
             os.system("clear")
             print("CPF: ", cpf)
             print("Cel: ", cel)
@@ -615,10 +632,7 @@ def p_colab():
                 print("M = mês. ")
                 print("A = ano. ")
                 print()
-                nasc = input("Nova data de nascimento: ")
-            else:
-                print()
-            name = name.upper()
+                nasc = input(data(("Nova data de nascimento: ")))
             os.system("clear")
             print("Cadastro alterado com sucesso!")
             colaboradores[cpf] = [cel, nasc, name]
@@ -648,10 +662,6 @@ def p_colab():
                 del(colaboradores[cpf])
                 print("Perfil excluido com sucesso!")
                 input("Tecle ENTER para continuar")
-            else:
-                print()
-        else:
-            print()
     else:
         os.system("clear")
         print("Cadastro inexistente!")
@@ -685,7 +695,7 @@ def cad_orc():
     print("Por favor, digite o CPF cadastrado.")
     print("Insira apenas números.")
     print()
-    cpf = input("CPF: ")
+    cpf = input(data(("CPF: ")))
     #verif = checker_cpf_br(cpf)#
     #while verif != True:
     #    os.system("clear")
@@ -700,23 +710,19 @@ def cad_orc():
         print("Exemplo: VW - Gol")
         print()
         model = input("Qual a marca e modelo ?")
-        model = model.upper()
         os.system("clear")
         print("Por favor, insira o identificador do carro.")
         print("Exemplo: ABC1D23")
         print()
-        id = input("Qual o identificador ?")
-        id = id.upper()
+        id = input(data(("Qual o identificador ?")))
         os.system("clear")
         print("Por favor, agora descreva o problema.")
         print()
         problem = input("Descreva o problema: ")
-        problem = problem.upper()
         os.system("clear")
         print("Por favor, agora descreva o serviço")
         print()
         servic = input("Descreva o serviço: ")
-        servic = servic.upper()
         os.system("clear")
         print("Por favor, insira o valor do serviço.")
         print("Apenas números inteiros.")
@@ -751,7 +757,7 @@ def p_orc():
             print("Por favor, insira o CPF")
             print("Apenas números.")
             print()
-            cpf = input("CPF: ")
+            cpf = input(data(("CPF: ")))
             #verif = checker_cpf_br(cpf)#
             #while verif != True:
             #    os.system("clear")
@@ -764,8 +770,7 @@ def p_orc():
                 print("Por favor, insira o identificador do veiculo")
                 print("Exemplo: ABC1D23")
                 print()
-                id = input("Identificador: ")
-                id = id.upper()
+                id = input(data(("Identificador: ")))
                 if id in orcamentos:
                     os.system("clear")
                     print("CPF: ",orcamentos[id][0])
@@ -848,7 +853,7 @@ def p_orc():
                                     print()
                                     mec = orcamentos[id][7], print("Mecânico: ", mec)
                                     print()
-                                    cpf = input("Novo CPF: ")
+                                    cpf = input(data(("Novo CPF: ")))
                             edit = ("Deseja alterar o modelo? (s/n) ")
                             while edit == "n" or edit == "s":
                                 if edit == "s":    
@@ -890,7 +895,7 @@ def p_orc():
                                     print()
                                     mec = orcamentos[id][7], print("Mecânico: ", mec)
                                     print()
-                                    id = input("Novo identificador: ")
+                                    id = input(data(("Novo identificador: ")))
                             edit = input("Deseja alterar o problema? (s/n) ")
                             while edit == "n" or edit == "s":
                                 if edit == "s":
