@@ -8,7 +8,7 @@ from unicodedata import name
 
 clientes = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
 colaboradores = {"14438788471":["83999533547", "01102004", "ARON SILVA"]}
-orcamentos = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
+orcamentos = {"11729951414":["GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
 os_aberta = {}
 os_fechada = {}
 
@@ -134,7 +134,7 @@ def prt_orc():
     print()
 
 
-def tr_os(id):
+def tr_os():
     os_aberta[id] = orcamentos[id]
     del(orcamentos[id])
     os.system("clear")
