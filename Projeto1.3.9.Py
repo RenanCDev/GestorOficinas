@@ -671,6 +671,9 @@ def cad_orc():
         print()
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
+    else:
+        print("CPF NÃO CADASTRADO!!!")
+        input("Tecle ENTER para continuar")
 
 
 
@@ -779,7 +782,6 @@ def p_orc():
             os.system("clear")
             print("OPERAÇÃO INVÁLIDA!!!")
             input("Tecle ENTER para continuar")
-
 
 
 
