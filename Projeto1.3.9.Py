@@ -177,6 +177,92 @@ def prt_orc_0():
     print()
 
 
+
+def prt_os_a0():
+    os.system("clear")
+    print("CPF: ",os_aberta[id][0])
+    print()
+    print("Modelo: ",os_aberta[id][1])
+    print()
+    print("Identificador: ",os_aberta[id][2])
+    print()
+    print("Problema: ",os_aberta[id][3])
+    print()
+    print("Serviço: ",os_aberta[id][4])
+    print()
+    print("Valor do serviço: ",os_aberta[id][5])
+    print()
+    print("Valor da mão de obra: ",os_aberta[id][6])
+    print()
+    print("Refrigerista: ",os_aberta[id][7])
+    print()
+
+
+
+def prt_os_a():
+    cpf = os_aberta[id][0], print("CPF: ",cpf)
+    print()
+    model = os_aberta[id][1], print("Modelo: ",model)
+    print()
+    id = os_aberta[id][2], print("Identificador: ",id)
+    print()
+    problem = os_aberta[id][3], print("Problema: ", problem)
+    print()
+    servic = os_aberta[id][4], print("Serviço: ",servic)
+    print()
+    val_servic = os_aberta[id][5], print("Valor do serviço: ", val_servic)
+    print()
+    val_m_obra = os_aberta[id][6], print("Valor da mão de obra: ", val_m_obra)
+    print()
+    mec = os_aberta[id][7], print("Refrigerista: ", mec)
+    print()
+
+
+
+def tr_os_f():
+    os_fechada[id] = os_aberta[id]
+    del(os_aberta[id])
+    os.system("clear")
+    print("CPF: ",os_fechada[id][0])
+    print()
+    print("Modelo: ",os_fechada[id][1])
+    print()
+    print("Identificador: ",os_fechada[id][2])
+    print()
+    print("Problema: ",os_fechada[id][3])
+    print()
+    print("Serviço: ",os_fechada[id][4])
+    print()
+    print("Valor do serviço: ",os_fechada[id][5])
+    print()
+    print("Valor da mão de obra: ",os_fechada[id][6])
+    print()
+    print("Refrigerista: ",os_fechada[id][7])
+    print()
+
+
+
+def prt_os_f():
+    os.system("clear")
+    print("CPF: ",os_fechada[id][0])
+    print()
+    print("Modelo: ",os_fechada[id][1])
+    print()
+    print("Identificador: ",os_fechada[id][2])
+    print()
+    print("Problema: ",os_fechada[id][3])
+    print()
+    print("Serviço: ",os_fechada[id][4])
+    print()
+    print("Valor do serviço: ",os_fechada[id][5])
+    print()
+    print("Valor da mão de obra: ",os_fechada[id][6])
+    print()
+    print("Refrigerista: ",os_fechada[id][7])
+    print()
+
+
+
 def prt_colab():
     os.system("clear")
     cpf = cpf
@@ -699,10 +785,10 @@ def p_orc():
     print("\t| PESQUISA - ORÇAMENTOS |")
     print("\t+-----------------------+")
     print()
-    print("\t1 - Pesquisar por CPF.")
-    print("\t0 - voltar ao menu anterior.")
+    print("\t1 - Pesquisar por CPF e identificador")
+    print("\t0 - voltar ao menu anterior")
     print()
-    op = input("O que deseja fazer ?")
+    op = input("O que deseja fazer ? ")
     while op != "0":
         if op == "1":
             os.system("clear")
@@ -812,8 +898,110 @@ def p_os_aberta():
     print("\t| PESQUISA - OSs ABERTAS |")
     print("\t+------------------------+")
     print()
-    print("EM DESENVOLVIMENTO!")
-    input("Tecle ENTER para continuar")
+    print("\t1 - Pesquisar por CPF e identificador")
+    print("\t0 - voltar ao menu anterior")
+    print()
+    op = input("O que deseja fazer ? ")
+    while op != "0":
+        if op == "1":
+            os.system("clear")
+            print("Por favor, insira o CPF")
+            print("Apenas números.")
+            print()
+            cpf = input("CPF: ")
+            cpf = data(cpf)
+            #verif = checker_cpf_br(cpf)#
+            #while verif != True:
+            #    os.system("clear")
+            #    print("CPF INVÁLIDO!!!")
+            #    print("insira um CPF válido.")
+            #    print()
+            #    cpf = input("CPF: ")
+            #    verif = checker_cpf_br(cpf)
+            if cpf in clientes:
+                os.system("clear")
+                print("Por favor, insira o identificador do veiculo")
+                print("Exemplo: ABC1D23")
+                print()
+                id = input("Identificador: ")
+                id = data(id)
+                if id in os_aberta:
+                    prt_os_a0()
+                    print("\t1 - Transformar em ordem de serviço fechada")
+                    print("\t1 - Editar ordem de serviço")
+                    print("\t0 - Excluir ordem de serviço")
+                    print()
+                    op = input("Escolha uma opção por favor.")
+                    while op != "0":
+                        if op == "1":
+                            tr_os_f()
+                        elif op == "2":
+                            os.system("clear")
+                            prt_os_a()
+                            edit = input("Deseja alterar o CPF? (s/n) ")
+                            while edit == "n" or edit == "s":    
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    cpf = input("Novo CPF: ")
+                                    cpf = data(cpf)
+                            edit = ("Deseja alterar o modelo? (s/n) ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":    
+                                    os.system("clear")
+                                    prt_os_a()
+                                    model = input("Novo modelo: ")
+                            edit = input("Deseja alterar o identificador: ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    id = input("Novo identificador: ")
+                                    id = data(id)
+                            edit = input("Deseja alterar o problema? (s/n) ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    problem = input("Novo problema: ")
+                            edit = input("Deseja alterar o serviço? (s/n) ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    servic = input("Novo serviço: ")
+                            edit = input("Deseja alterar o valor do serviço? (s/n) ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    val_servic = input("Novo valor do serviço: ")
+                            edit = input("Deseja alterar o valor da mão de obra? (s/n) ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    val_m_obra = input("Novo valor da mão de obra: ")
+                            edit = input("Deseja alterar o refrigerista? (s/n) ")
+                            while edit == "n" or edit == "s":
+                                if edit == "s":
+                                    os.system("clear")
+                                    prt_os_a()
+                                    mec = input("Novo refrigerista: ") 
+                        else:
+                            os.system("clear")
+                            print("OPERAÇÃO INVÁLIDA!!!")
+                            input("Tecle ENTER para continuar")
+                else:
+                    print("IDENTIFICADOR NÃO CADASTRADO!!!")
+                    input("Tecle ENTER para continuar")
+            else:
+                print("CPF NÃO CADASTRADO!!!")
+                input("Tecle ENTER para continuar")
+        else:
+            os.system("clear")
+            print("OPERAÇÃO INVÁLIDA!!!")
+            input("Tecle ENTER para continuar")
 
 
 
@@ -823,8 +1011,47 @@ def p_os_fechada():
     print("\t| PESQUISA - OSs FECHADAS |")
     print("\t+-------------------------+")
     print()
-    print("EM DESENVOLVIMENTO!")
-    input("Tecle ENTER para continuar")
+    print("\t1 - Pesquisar por CPF e identificador")
+    print("\t0 - voltar ao menu anterior")
+    print()
+    op = input("O que deseja fazer ? ")
+    while op != "0":
+        if op == "1":
+            os.system("clear")
+            print("Por favor, insira o CPF")
+            print("Apenas números.")
+            print()
+            cpf = input("CPF: ")
+            cpf = data(cpf)
+            #verif = checker_cpf_br(cpf)#
+            #while verif != True:
+            #    os.system("clear")
+            #    print("CPF INVÁLIDO!!!")
+            #    print("insira um CPF válido.")
+            #    print()
+            #    cpf = input("CPF: ")
+            #    verif = checker_cpf_br(cpf)
+            if cpf in clientes:
+                os.system("clear")
+                print("Por favor, insira o identificador do veiculo")
+                print("Exemplo: ABC1D23")
+                print()
+                id = input("Identificador: ")
+                id = data(id)
+                if id in os_aberta:
+                    prt_os_f()
+                    input("Tecle ENTER para continuar")
+                else:
+                    print("IDENTIFICADOR NÃO CADASTRADO!!!")
+                    input("Tecle ENTER para continuar")
+            else:
+                print("CPF NÃO CADASTRADO!!!")
+                input("Tecle ENTER para continuar")
+        else:
+            os.system("clear")
+            print("OPERAÇÃO INVÁLIDA!!!")
+            input("Tecle ENTER para continuar")
+
 
 
 
@@ -1001,7 +1228,6 @@ def p_deb():
     print()
     print("EM DESENVOLVIMENTO!")
     input("Tecle ENTER para continuar")
-
 
 
 
