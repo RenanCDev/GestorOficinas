@@ -403,6 +403,65 @@ def edit_name():
 
 
 
+def insert_model():
+    os.system("clear")
+    print("Por favor, insira a marca e o modelo do carro.")
+    print("Exemplo: VW - Gol")
+    print()
+    model = input("Qual a marca e modelo ?")
+    return model
+
+
+
+def insert_id():
+    os.system("clear")
+    print("Por favor, insira o identificador do carro.")
+    print("Exemplo: ABC1D23")
+    print()
+    id = input("Qual o identificador ?")
+    id = data(id)
+    return id
+
+
+
+def insert_problem():
+    os.system("clear")
+    print("Por favor, descreva o problema.")
+    print()
+    problem = input("Problema: ")
+    return problem 
+
+
+
+def insert_val_servic():
+    os.system("clear")
+    print("Por favor, descreva o serviço")
+    print()
+    servic = input("Serviço: ")
+    return servic
+
+
+
+def val_servic():
+    os.system("clear")
+    print("Por favor, insira o valor do serviço.")
+    print("Apenas números inteiros.")
+    print()
+    val_servic = int(input("Valor: "))
+    return val_servic
+
+
+
+def insert_val_m_obra():
+    os.system("clear")
+    print("Por favor, insira o valor da mão de obra.")
+    print("Apenas números inteiros.")
+    print()
+    val_m_obra = int(input("Valor: "))
+    return val_m_obra
+
+
+
 def main_menu():
     os.system("clear")
     print("#####            #####  #####  #####  #####")
@@ -685,42 +744,17 @@ def cad_orcament():
         cpf = insert_cpf
         verif = checker_cpf_br
     if cpf in clientes:
-        os.system("clear")
-        print("Por favor, insira a marca e o modelo do carro.")
-        print("Exemplo: VW - Gol")
-        print()
-        model = input("Qual a marca e modelo ?")
-        os.system("clear")
-        print("Por favor, insira o identificador do carro.")
-        print("Exemplo: ABC1D23")
-        print()
-        id = input("Qual o identificador ?")
-        id = data(id)
-        os.system("clear")
-        print("Por favor, descreva o problema.")
-        print()
-        problem = input("Problema: ")
-        os.system("clear")
-        print("Por favor, descreva o serviço")
-        print()
-        servic = input("Serviço: ")
-        os.system("clear")
-        print("Por favor, insira o valor do serviço.")
-        print("Apenas números inteiros.")
-        print()
-        val_servic = int(input("Valor: "))
-        os.system("clear")
-        print("Por favor, insira o valor da mão de obra.")
-        print("Apenas números inteiros.")
-        print()
-        val_m_obra = int(input("Valor: "))
-        os.system("clear")
-        print("Por favor, insira o nome do colaborador.")
-        print()
+        model = insert_model()
+        id = insert_id()
+        problem = insert_problem()
+        servic = insert_val_servic()
+        val_servic = insert_val_servic
+        val_m_obra = insert_val_m_obra()
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     else:
         print("CPF NÃO CADASTRADO!!!")
+        print()
         input("Tecle ENTER para continuar")
 
 
@@ -735,22 +769,17 @@ def pesq_orcament():
     print("\t0 - voltar ao menu anterior")
     print()
     op = input("O que deseja fazer ? ")
-    while op != "0":
+    if op != "0":
         if op == "1":
             os.system("clear")
-            print("Por favor, insira o CPF")
-            print("Apenas números.")
-            print()
             cpf = insert_cpf()
-            #verif = checker_cpf_br(cpf)#
-            #re_insert_cpf(verif)#
+            verif = checker_cpf_br(cpf)
+            while verif != True:
+                data_invalid()
+                cpf = insert_cpf()
+                verif = checker_cpf_br(cpf)
             if cpf in clientes:
-                os.system("clear")
-                print("Por favor, insira o identificador do veiculo")
-                print("Exemplo: ABC1D23")
-                print()
-                id = input("Identificador: ")
-                id = data(id)
+                id = insert_id()
                 if id in orcamentos:
                     print_orcament_0(id)
                     print("\t1 - Tornar o orçamento em O.S. aberta.")
