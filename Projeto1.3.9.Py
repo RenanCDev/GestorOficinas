@@ -7,7 +7,7 @@ from unicodedata import name
 
 
 clientes = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
-colaboradores = {"14438788471":["83999533547", "01102004", "ARON SILVA"]}
+colaboradores = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
 orcamentos = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
 os_aberta = {}
 os_fechada = {}
@@ -365,7 +365,17 @@ def exc_client(cpf):
         os.system("clear")
         del(clientes[cpf])
         print("Perfil excluido com sucesso!")
+        print()
         input("Tecle ENTER para continuar")
+
+
+
+def exc_colab(cpf):
+    os.system("clear")
+    del(colaboradores[cpf])
+    print("Perfil excluido com sucesso!")
+    print()
+    input("Tecle ENTER para continuar")
 
 
 
@@ -436,51 +446,51 @@ def menu_clientes():
 
 
 def cad_clientes():
-    os.system("clear")
-    print("\t+---------------------+")
-    print("\t| CADASTRO -  CLIENTE |")
-    print("\t+---------------------+")
     cpf = insert_cpf()
     verif = checker_cpf_br(cpf)
     while verif != True:
         data_invalid()
         cpf = insert_cpf()
         verif = checker_cpf_br(cpf)
-    cel = insert_cel()
-    verif = checker_cel_br(cel)
-    while verif != True:
-        data_invalid()
+    if cpf not in clientes:
         cel = insert_cel()
         verif = checker_cel_br(cel)
-    os.system("clear")
-    name = insert_name()
-    verif = checker_name(name)
-    while verif != True:
-        data_invalid()
+        while verif != True:
+            data_invalid()
+            cel = insert_cel()
+            verif = checker_cel_br(cel)
+        os.system("clear")
         name = insert_name()
         verif = checker_name(name)
-    nasciment = insert_nasciment()
-    os.system("clear")
-    clientes[cpf] = [cel, nasciment, name]  
-    print("Cadastro realizado com sucesso!")
-    input("Tecle ENTER para continuar")
+        while verif != True:
+            data_invalid()
+            name = insert_name()
+            verif = checker_name(name)
+        nasciment = insert_nasciment()
+        os.system("clear")
+        clientes[cpf] = [cel, nasciment, name]  
+        print("Cadastro realizado com sucesso!")
+        print()
+        input("Tecle ENTER para continuar")
+    else:
+        os.system("clear")
+        print("CPF já cadastrado")
+        print()
+        input("Tecle ENTER para continuar")
 
 
 
 def pesq_clientes():
-    os.system("clear")
-    print("\t+---------------------+")
-    print("\t| PESQUISA - CLIENTES |")
-    print("\t+---------------------+")
-    print()
-    print("Por favor, digite o CPF que deseja localizar: ")
-    print()
-    input("Pressione ENTER para continuar")
     cpf = insert_cpf()
+    verif = checker_cpf_br(cpf)
+    while verif != True:
+        data_invalid()
+        cpf = insert_cpf()
+        verif = checker_cpf_br(cpf)
     if cpf in clientes:
         print_client(cpf)
         option = option_pesq_cad()
-        while option != "0":
+        if option != "0":
             if option == "1":
                 print_client(cpf)
                 edit = input("Deseja alterar o celular? (s/n) ")
@@ -488,12 +498,18 @@ def pesq_clientes():
                     cel = edit_cel()
                 elif edit != "n" and edit != "s" :
                     data_invalid()
+                    cel = clientes[cpf][0]    
+                else:
+                    cel = clientes[cpf][0]    
                 print_client(cpf)
                 edit = input("Deseja alterar o nome? (s/n) ")
                 if edit == "s":
                     name = edit_name()
                 elif edit != "n" and edit != "s":
                     data_invalid()
+                    name = clientes[cpf][1]
+                else:
+                    name = clientes[cpf][1]
                 print_client(cpf)
                 edit = input("Deseja alterar a data de nascimento? (s/n) ")
                 if edit == "s":
@@ -501,11 +517,11 @@ def pesq_clientes():
                     nasciment = insert_nasciment()
                 elif edit != "n" and edit != "s":
                     data_invalid()
+                    nasciment = clientes[cpf][2]
+                else:
+                    nasciment = clientes[cpf][2]
                 os.system("clear")
                 print("Cadastro alterado com sucesso!")
-                cel = clientes[cpf][0]
-                nasciment = clientes[cpf][1]
-                name = clientes[cpf][2]
                 clientes[cpf] = [cel, nasciment, name]
             elif option == "2":
                 print_client(cpf)
@@ -517,8 +533,13 @@ def pesq_clientes():
             else:
                 os.system("clear")
                 input("Tecle ENTER para continuar")
+        else:
+            data_invalid()
     else:
-        data_invalid()
+        os.system("clear")
+        print("CPF NÃO CADASTRADO!!!")
+        print()
+        input("Tecle ENTER para continuar")
 
 
 
@@ -538,86 +559,100 @@ def menu_colab():
 
 
 def cad_colab():
-    os.system("clear")
-    print("\t+------------------------+")
-    print("\t| CADASTRO - COLABORADOR |")
-    print("\t+------------------------+")
-    print()
     cpf = insert_cpf()
     verif = checker_cpf_br(cpf)
     while verif != True:
         data_invalid()
         cpf = insert_cpf()
         verif = checker_cpf_br()
-    cel = insert_cel()
-    verif = checker_cel_br(cel)
-    while verif != True:
-        data_invalid()
+    if cpf not in colaboradores:
         cel = insert_cel()
-        verif = checker_cel_br()
-    name = insert_name()
-    verif = checker_name(name)
-    while verif != True:
+        verif = checker_cel_br(cel)
+        while verif != True:
+            data_invalid()
+            cel = insert_cel()
+            verif = checker_cel_br()
         name = insert_name()
-        verif = checker_name()
-    nasciment = insert_nasciment()
-    os.system("clear")
-    colaboradores[cpf] = [cel, nasciment, name]  
-    print("Cadastro realizado com sucesso!")
-    input("Tecle ENTER para continuar")
+        verif = checker_name(name)
+        while verif != True:
+            name = insert_name()
+            verif = checker_name()
+        nasciment = insert_nasciment()
+        os.system("clear")
+        colaboradores[cpf] = [cel, nasciment, name]  
+        print("Cadastro realizado com sucesso!")
+        print()
+        input("Tecle ENTER para continuar")
+    else:
+        os.system("clear")
+        print("CPF CADASTRADO!!!")
+        print()
+        input("Tecle ENTER para continuar")
 
 
 
 def pesq_colab():
-    os.system("clear")
-    print("\t+--------------------------+")
-    print("\t| PESQUISA - COLABORADORES |")
-    print("\t+--------------------------+")
-    print()
-    print("Por favor, digite o CPF que deseja localizar: ")
-    print()
     cpf = insert_cpf()
+    verif = checker_cpf_br(cpf)
+    while verif != True:
+        data_invalid()
+        cpf = insert_cpf()
+        verif = checker_cpf_br(cpf)     
     if cpf in colaboradores:
-        print_colab()
+        print_colab(cpf)
         option = option_pesq_cad()
-        while option != "0":
+        if option != "0":
             if option == "1":
-                print_colab()
+                cpf
+                print_client(cpf)
                 edit = input("Deseja alterar o celular? (s/n) ")
                 if edit == "s":
                     cel = edit_cel()
                 elif edit != "n" and edit != "s" :
                     data_invalid()
-                print_colab()
+                    cel = colaboradores[cpf][0]    
+                else:
+                    cel = colaboradores[cpf][0]    
+                print_client(cpf)
                 edit = input("Deseja alterar o nome? (s/n) ")
                 if edit == "s":
                     name = edit_name()
                 elif edit != "n" and edit != "s":
                     data_invalid()
-                print_colab()
+                    name = colaboradores[cpf][1]
+                else:
+                    name = colaboradores[cpf][1]
+                print_client(cpf)
                 edit = input("Deseja alterar a data de nascimento? (s/n) ")
                 if edit == "s":
-                    print_colab()
+                    print_client(cpf)
                     nasciment = insert_nasciment()
                 elif edit != "n" and edit != "s":
                     data_invalid()
+                    nasciment = colaboradores[cpf][2]
+                else:
+                    nasciment = colaboradores[cpf][2]
                 os.system("clear")
-                print("Cadastro alterado com sucesso!")
-                cel = colaboradores[cpf][0]
-                nasciment = colaboradores[cpf][1]
-                name = colaboradores[cpf][2]
                 colaboradores[cpf] = [cel, nasciment, name]
+                print("Cadastro alterado com sucesso!")
+                print()
+                input("Tecle ENTER para continuar")
             elif option == "2":
-                print_colab()
+                print_colab(cpf)
                 exc = input("Deseja mesmo excluir esse perfil? (s/n) ")
                 if exc == "s":
-                    exc_client(cpf)
+                    exc_colab(cpf)
                 elif exc != "n" and exc != "s":
                     data_invalid()
             else:
                 data_invalid()
+        else:
+            data_invalid()
     else:
-        data_invalid()
+        os.system("clear")
+        print("CPF NÃO CADASTRADO!!!")
+        print()
+        input("Tecle ENTER para continuar")
 
 
 
