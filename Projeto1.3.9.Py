@@ -787,7 +787,7 @@ def pesq_orcament():
                     print("\t0 - Excluir orçamento.")
                     print()
                     op = input("Escolha uma opção por favor.")
-                    while op != "0":
+                    if op != "0":
                         if op == "1":
                             transf_ord_serv_abert(id)
                         elif op == "2":
@@ -848,13 +848,16 @@ def pesq_orcament():
                             input("Tecle ENTER para continuar")
                 else:
                     print("IDENTIFICADOR NÃO CADASTRADO!!!")
+                    print()
                     input("Tecle ENTER para continuar")
             else:
                 print("CPF NÃO CADASTRADO!!!")
+                print()
                 input("Tecle ENTER para continuar")
         else:
             os.system("clear")
             print("OPERAÇÃO INVÁLIDA!!!")
+            print()
             input("Tecle ENTER para continuar")
 
 
@@ -943,19 +946,17 @@ def pesq_ord_serv_abert():
                             print_ord_serv_abert()
                             mec = input("Novo refrigerista: ") 
                     else:
-                        os.system("clear")
-                        print("OPERAÇÃO INVÁLIDA!!!")
-                        input("Tecle ENTER para continuar")
+                        data_invalid()
             else:
                 print("IDENTIFICADOR NÃO CADASTRADO!!!")
+                print()
                 input("Tecle ENTER para continuar")
         else:
             print("CPF NÃO CADASTRADO!!!")
+            print()
             input("Tecle ENTER para continuar")
     else:
-        os.system("clear")
-        print("OPERAÇÃO INVÁLIDA!!!")
-        input("Tecle ENTER para continuar")
+        data_invalid()
 
 
 
