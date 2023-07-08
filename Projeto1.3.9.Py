@@ -120,6 +120,7 @@ def data_invalid():
     print("ENTRADA INVÁLIDA!!!")
     print()
     input("Pressione ENTER continuar")
+    os.system("clear")
 
 
 
@@ -447,7 +448,12 @@ def insert_val_servic():
     print("Por favor, insira o valor do serviço.")
     print("Apenas números inteiros.")
     print()
-    val_servic = int(input("Valor: "))
+    val_servic = input("Valor: ")
+    verif = val_servic.isdigit()
+    while verif != True:
+        data_invalid()
+        val_servic = input("Valor do serviço: ")
+        verif = val_servic.isdigit()
     return val_servic
 
 
@@ -457,8 +463,13 @@ def insert_val_m_obra():
     print("Por favor, insira o valor da mão de obra.")
     print("Apenas números inteiros.")
     print()
-    val_m_obra = int(input("Valor: "))
-    return val_m_obra
+    val_m_obra = input("Valor: ")
+    verif = val_m_obra.isdigit()
+    while verif != True:
+        data_invalid()
+        val_m_obra = input("Valor da mão de obra: ")
+        verif = val_m_obra.isdigit()
+    return int(val_m_obra)
 
 
 
@@ -909,8 +920,8 @@ def cad_orcament():
     verif = checker_cpf_br(cpf)
     while verif != True:
         data_invalid()
-        cpf = insert_cpf
-        verif = checker_cpf_br
+        cpf = insert_cpf()
+        verif = checker_cpf_br(cpf)
     if cpf in clientes:
         model = insert_model()
         id = insert_id()
