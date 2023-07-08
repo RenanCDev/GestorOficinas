@@ -119,11 +119,11 @@ def data_invalid():
     os.system("clear")
     print("ENTRADA INVÁLIDA!!!")
     print()
-    input("Pressione ENTER para inserir novamente")
+    input("Pressione ENTER continuar")
 
 
 
-def print_orcament():
+def print_orcament(id):
     cpf = orcamentos[id][0], print("CPF: ",cpf)
     print()
     model = orcamentos[id][1], print("Modelo: ",model)
@@ -187,7 +187,7 @@ def print_orcament_0(id):
 
 
 
-def print_ord_serv_abert0():
+def print_ord_serv_abert0(id):
     os.system("clear")
     print("CPF: ",os_aberta[id][0])
     print()
@@ -208,7 +208,7 @@ def print_ord_serv_abert0():
 
 
 
-def print_ord_serv_abert():
+def print_ord_serv_abert(id):
     cpf = os_aberta[id][0], print("CPF: ",cpf)
     print()
     model = os_aberta[id][1], print("Modelo: ",model)
@@ -228,7 +228,7 @@ def print_ord_serv_abert():
 
 
 
-def transf_ord_serv_fechad():
+def transf_ord_serv_fechad(id):
     os_fechada[id] = os_aberta[id]
     del(os_aberta[id])
     os.system("clear")
@@ -251,7 +251,7 @@ def transf_ord_serv_fechad():
 
 
 
-def print_ord_serv_fechad():
+def print_ord_serv_fechad(id):
     os.system("clear")
     print("CPF: ",os_fechada[id][0])
     print()
@@ -433,16 +433,16 @@ def insert_problem():
 
 
 
-def insert_val_servic():
+def insert_servic():
     os.system("clear")
-    print("Por favor, descreva o serviço")
+    print("Por favor, descreva o serviço.")
     print()
     servic = input("Serviço: ")
     return servic
 
 
 
-def val_servic():
+def insert_val_servic():
     os.system("clear")
     print("Por favor, insira o valor do serviço.")
     print("Apenas números inteiros.")
@@ -459,6 +459,229 @@ def insert_val_m_obra():
     print()
     val_m_obra = int(input("Valor: "))
     return val_m_obra
+
+
+
+def edit_cad_client(cpf):
+    print_client(cpf)
+    edit = input("Deseja alterar o celular? (s/n) ")
+    if edit == "s":
+        cel = edit_cel()
+    else:
+        cel = clientes[cpf][0]
+        if edit != "n" and edit != "s" :
+            data_invalid()
+    print_client(cpf)
+    edit = input("Deseja alterar o nome? (s/n) ")
+    if edit == "s":
+        name = edit_name()
+    else:
+        name = clientes[cpf][1]
+        if edit != "n" and edit != "s":
+            data_invalid()
+    print_client(cpf)
+    edit = input("Deseja alterar a data de nascimento? (s/n) ")
+    if edit == "s":
+        print_client(cpf)
+        nasciment = insert_nasciment()
+    else:
+        nasciment = clientes[cpf][2]
+        if edit != "n" and edit != "s":
+            data_invalid()
+    os.system("clear")
+    print("Cadastro alterado com sucesso!")
+    clientes[cpf] = [cel, nasciment, name]
+    return clientes[cpf]
+
+
+
+def edit_cad_colab(cpf):
+    print_colab(cpf)
+    edit = input("Deseja alterar o celular? (s/n) ")
+    if edit == "s":
+        cel = edit_cel()
+    else:
+        cel = colaboradores[cpf][0]
+        if edit != "n" and edit != "s" :
+            data_invalid()
+    print_colab(cpf)
+    edit = input("Deseja alterar o nome? (s/n) ")
+    if edit == "s":
+        name = edit_name()
+    else:
+        name =  colaboradores[cpf][1]
+        if edit != "n" and edit != "s":
+            data_invalid()
+    print_colab(cpf)
+    edit = input("Deseja alterar a data de nascimento? (s/n) ")
+    if edit == "s":
+        print_client(cpf)
+        nasciment = insert_nasciment()
+    else:
+        nasciment = colaboradores[cpf][2]
+        if edit != "n" and edit != "s":
+            data_invalid()
+    os.system("clear")
+    print("Cadastro alterado com sucesso!")
+    clientes[cpf] = [cel, nasciment, name]
+    return clientes[cpf]
+
+
+
+def edit_orcament(id):
+    os.system("clear")
+    print_orcament(id)
+    edit = input("Deseja alterar o CPF? (s/n) ")   
+    if edit == "s":
+        cpf = insert_cpf()
+    else:
+        cpf = orcamentos[id][0]
+        if edit != "n" and edit != "s":
+            data_invalid()
+    print_orcament(id)
+    edit = ("Deseja alterar o modelo? (s/n) ")
+    if edit == "s":    
+        model = insert_model()
+    else:
+        model = orcamentos[id][1]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_orcament(id)
+    edit = input("Deseja alterar o identificador: ")
+    if edit == "s":
+        id = insert_id()
+    else:
+        id = orcamentos[id][2]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_orcament(id)
+    edit = input("Deseja alterar o problema? (s/n) ")
+    if edit == "s":
+        problem = insert_problem()
+    else:
+        problem = orcamentos[id][3]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_orcament(id)
+    edit = input("Deseja alterar o serviço? (s/n) ")
+    if edit == "s":
+        servic = insert_servic()
+    else:
+        servic = orcamentos[id][4]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_orcament(id)
+    edit = input("Deseja alterar o valor do serviço? (s/n) ")
+    if edit == "s":
+        val_servic = insert_val_servic()
+    else:
+        val_servic = orcamentos[id][5]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_orcament(id)
+    edit = input("Deseja alterar o valor da mão de obra? (s/n) ")
+    if edit == "s":
+        val_m_obra = insert_val_m_obra()
+    else:
+        val_m_obra = orcamentos[id][6]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_orcament(id)
+    edit = input("Deseja alterar o refrigerista? (s/n) ")
+    if edit == "s":
+        os.system("clear")
+        mec = input("Novo refrigerista: ") 
+    else:
+        mec = orcamentos[id][7]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
+    return orcamentos[id]
+
+
+
+def edit_ord_serv_abert(id):
+    os.system("clear")
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o CPF? (s/n) ")   
+    if edit == "s":
+        cpf = insert_cpf()
+    else:
+        cpf = os_aberta[id][0]
+        if edit != "n" and edit != "s":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = ("Deseja alterar o modelo? (s/n) ")
+    if edit == "s":    
+        model = insert_model()
+    else:
+        model = os_aberta[id][1]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o identificador: ")
+    if edit == "s":
+        id = insert_id()
+    else:
+        id = os_aberta[id][2]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o problema? (s/n) ")
+    if edit == "s":
+        problem = insert_problem()
+    else:
+        problem = os_aberta[id][3]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o serviço? (s/n) ")
+    if edit == "s":
+        servic = insert_servic()
+    else:
+        servic = os_aberta[id][4]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o valor do serviço? (s/n) ")
+    if edit == "s":
+        val_servic = insert_val_servic()
+    else:
+        val_servic = os_aberta[id][5]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o valor da mão de obra? (s/n) ")
+    if edit == "s":
+        val_m_obra = insert_val_m_obra()
+    else:
+        val_m_obra = os_aberta[id][6]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    print_ord_serv_abert(id)
+    edit = input("Deseja alterar o refrigerista? (s/n) ")
+    if edit == "s":
+        os.system("clear")
+        mec = input("Novo refrigerista: ") 
+    else:
+        mec = os_aberta[id][7]
+        if edit != "n" and edit != "n":
+            data_invalid()
+    os_aberta[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
+    return os_aberta[id]
+
+
+
+
+def option_orcamentos():
+    print()
+    print("\t1 - Tornar o orçamento em O.S. aberta.")
+    print("\t2 - Editar orçamento.")
+    print("\t3 - Excluir orçamento.")
+    print("\t0 - Voltar ao menu anterior")
+    print()
+    option = input("Escolha uma opção: ")
+    return option
 
 
 
@@ -551,37 +774,11 @@ def pesq_clientes():
         option = option_pesq_cad()
         if option != "0":
             if option == "1":
-                print_client(cpf)
-                edit = input("Deseja alterar o celular? (s/n) ")
-                if edit == "s":
-                    cel = edit_cel()
-                elif edit != "n" and edit != "s" :
-                    data_invalid()
-                    cel = clientes[cpf][0]    
-                else:
-                    cel = clientes[cpf][0]    
-                print_client(cpf)
-                edit = input("Deseja alterar o nome? (s/n) ")
-                if edit == "s":
-                    name = edit_name()
-                elif edit != "n" and edit != "s":
-                    data_invalid()
-                    name = clientes[cpf][1]
-                else:
-                    name = clientes[cpf][1]
-                print_client(cpf)
-                edit = input("Deseja alterar a data de nascimento? (s/n) ")
-                if edit == "s":
-                    print_client(cpf)
-                    nasciment = insert_nasciment()
-                elif edit != "n" and edit != "s":
-                    data_invalid()
-                    nasciment = clientes[cpf][2]
-                else:
-                    nasciment = clientes[cpf][2]
-                os.system("clear")
+                cpf
+                clientes[cpf] = edit_cad_client(cpf)
                 print("Cadastro alterado com sucesso!")
-                clientes[cpf] = [cel, nasciment, name]
+                print()
+                input("Tecle ENTER para continuar")
             elif option == "2":
                 print_client(cpf)
                 exc = input("Deseja mesmo excluir esse perfil? (s/n) ")
@@ -663,36 +860,7 @@ def pesq_colab():
         if option != "0":
             if option == "1":
                 cpf
-                print_client(cpf)
-                edit = input("Deseja alterar o celular? (s/n) ")
-                if edit == "s":
-                    cel = edit_cel()
-                elif edit != "n" and edit != "s" :
-                    data_invalid()
-                    cel = colaboradores[cpf][0]    
-                else:
-                    cel = colaboradores[cpf][0]    
-                print_client(cpf)
-                edit = input("Deseja alterar o nome? (s/n) ")
-                if edit == "s":
-                    name = edit_name()
-                elif edit != "n" and edit != "s":
-                    data_invalid()
-                    name = colaboradores[cpf][1]
-                else:
-                    name = colaboradores[cpf][1]
-                print_client(cpf)
-                edit = input("Deseja alterar a data de nascimento? (s/n) ")
-                if edit == "s":
-                    print_client(cpf)
-                    nasciment = insert_nasciment()
-                elif edit != "n" and edit != "s":
-                    data_invalid()
-                    nasciment = colaboradores[cpf][2]
-                else:
-                    nasciment = colaboradores[cpf][2]
-                os.system("clear")
-                colaboradores[cpf] = [cel, nasciment, name]
+                colaboradores[cpf] = edit_cad_colab(cpf)
                 print("Cadastro alterado com sucesso!")
                 print()
                 input("Tecle ENTER para continuar")
@@ -747,9 +915,10 @@ def cad_orcament():
         model = insert_model()
         id = insert_id()
         problem = insert_problem()
-        servic = insert_val_servic()
-        val_servic = insert_val_servic
+        servic = insert_servic()
+        val_servic = insert_val_servic()
         val_m_obra = insert_val_m_obra()
+        os.system("clear")
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     else:
@@ -766,11 +935,11 @@ def pesq_orcament():
     print("\t+-----------------------+")
     print()
     print("\t1 - Pesquisar por CPF e identificador")
-    print("\t0 - voltar ao menu anterior")
+    print("\t0 - Coltar ao menu anterior")
     print()
-    op = input("O que deseja fazer ? ")
-    if op != "0":
-        if op == "1":
+    option = input("O que deseja fazer ? ")
+    if option != "0":
+        if option == "1":
             os.system("clear")
             cpf = insert_cpf()
             verif = checker_cpf_br(cpf)
@@ -782,70 +951,20 @@ def pesq_orcament():
                 id = insert_id()
                 if id in orcamentos:
                     print_orcament_0(id)
-                    print("\t1 - Tornar o orçamento em O.S. aberta.")
-                    print("\t2 - Editar orçamento.")
-                    print("\t0 - Excluir orçamento.")
-                    print()
-                    op = input("Escolha uma opção por favor.")
-                    if op != "0":
-                        if op == "1":
+                    option = option_orcamentos()
+                    if option != "0":
+                        if option == "1":
                             transf_ord_serv_abert(id)
-                        elif op == "2":
-                            os.system("clear")
-                            print_orcament()
-                            edit = input("Deseja alterar o CPF? (s/n) ")
-                            while edit == "n" or edit == "s":    
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    cpf = insert_cpf()
-                            edit = ("Deseja alterar o modelo? (s/n) ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":    
-                                    os.system("clear")
-                                    print_orcament()
-                                    model = input("Novo modelo: ")
-                            edit = input("Deseja alterar o identificador: ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    id = input("Novo identificador: ")
-                                    id = data(id)
-                            edit = input("Deseja alterar o problema? (s/n) ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    problem = input("Novo problema: ")
-                            edit = input("Deseja alterar o serviço? (s/n) ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    servic = input("Novo serviço: ")
-                            edit = input("Deseja alterar o valor do serviço? (s/n) ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    val_servic = input("Novo valor do serviço: ")
-                            edit = input("Deseja alterar o valor da mão de obra? (s/n) ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    val_m_obra = input("Novo valor da mão de obra: ")
-                            edit = input("Deseja alterar o refrigerista? (s/n) ")
-                            while edit == "n" or edit == "s":
-                                if edit == "s":
-                                    os.system("clear")
-                                    print_orcament()
-                                    mec = input("Novo refrigerista: ") 
+                        elif option == "2":
+                            id
+                            orcamentos[id] = edit_orcament(id)
+                        elif option == "3":
+                            del(orcamentos[id])
+                            print("Orçamento excluido com sucesso!")
+                            print()
+                            input("Tecle enter para continuar")
                         else:
-                            os.system("clear")
-                            print("OPERAÇÃO INVÁLIDA!!!")
-                            input("Tecle ENTER para continuar")
+                            data_invalid()
                 else:
                     print("IDENTIFICADOR NÃO CADASTRADO!!!")
                     print()
@@ -855,10 +974,7 @@ def pesq_orcament():
                 print()
                 input("Tecle ENTER para continuar")
         else:
-            os.system("clear")
-            print("OPERAÇÃO INVÁLIDA!!!")
-            print()
-            input("Tecle ENTER para continuar")
+            data_invalid()
 
 
 
@@ -867,96 +983,36 @@ def pesq_ord_serv_abert():
     print("\t+------------------------+")
     print("\t| PESQUISA - OSs ABERTAS |")
     print("\t+------------------------+")
-    print()
-    print("\t1 - Pesquisar por CPF e identificador")
-    print("\t0 - voltar ao menu anterior")
-    print()
-    op = input("O que deseja fazer ? ")
-    if op == "1":
-        os.system("clear")
-        cpf = insert_cpf()
-        #verif = checker_cpf_br(cpf)#
-        #re_insert_cpf(verif)#
-        os.system("clear")
-        print("Por favor, insira o identificador do veiculo")
-        print("Exemplo: ABC1D23")
-        print()
-        id = input("Identificador: ")
-        id = data(id)
-        if id in os_aberta:
-            print_ord_serv_abert0()
-            print("\t1 - Transformar em ordem de serviço fechada")
-            print("\t1 - Editar ordem de serviço")
-            print("\t0 - Excluir ordem de serviço")
-            print()
-            op = input("Escolha uma opção por favor.")
-            while op != "0":
-                if op == "1":
-                    transf_ord_serv_fechad()
-                elif op == "2":
-                    os.system("clear")
-                    print_ord_serv_abert()
-                    edit = input("Deseja alterar o CPF? (s/n) ")
-                    while edit == "n" or edit == "s":    
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            cpf = insert_cpf()
-                        edit = ("Deseja alterar o modelo? (s/n) ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":    
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            model = input("Novo modelo: ")
-                        edit = input("Deseja alterar o identificador: ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            id = input("Novo identificador: ")
-                            id = data(id)
-                        edit = input("Deseja alterar o problema? (s/n) ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            problem = input("Novo problema: ")
-                        edit = input("Deseja alterar o serviço? (s/n) ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            servic = input("Novo serviço: ")
-                        edit = input("Deseja alterar o valor do serviço? (s/n) ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            val_servic = input("Novo valor do serviço: ")
-                        edit = input("Deseja alterar o valor da mão de obra? (s/n) ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            val_m_obra = input("Novo valor da mão de obra: ")
-                        edit = input("Deseja alterar o refrigerista? (s/n) ")
-                    while edit == "n" or edit == "s":
-                        if edit == "s":
-                            os.system("clear")
-                            print_ord_serv_abert()
-                            mec = input("Novo refrigerista: ") 
+    input("Tecle ENTER para continuar")
+    id = insert_id()
+    if id in os_aberta:
+        option = option_pesq_cad()
+        if option != "0":
+            if option == "1":
+                id
+                transf_ord_serv_fechad(id)
+            elif option == "2":
+                os.system("clear")
+                print_ord_serv_abert(id)
+                if option != "0":
+                    if option == "1":
+                        transf_ord_serv_fechad(id)
+                    elif option == "2":
+                        id
+                        os_aberta[id] = edit_ord_serv_abert(id)
+                    elif option == "3":
+                        del(os_aberta[id])
+                        print("Ordem de serviço excluida com sucesso!")
+                        print()
+                        input("Tecle ENTER para continuar")
                     else:
                         data_invalid()
             else:
-                print("IDENTIFICADOR NÃO CADASTRADO!!!")
-                print()
-                input("Tecle ENTER para continuar")
-        else:
-            print("CPF NÃO CADASTRADO!!!")
-            print()
-            input("Tecle ENTER para continuar")
+                data_invalid()
     else:
-        data_invalid()
+        print("IDENTIFICADOR NÃO CADASTRADO!!!")
+        print()
+        input("Tecle ENTER para continuar")
 
 
 
@@ -965,41 +1021,19 @@ def pesq_ord_serv_fechad():
     print("\t+-------------------------+")
     print("\t| PESQUISA - OSs FECHADAS |")
     print("\t+-------------------------+")
-    print()
-    print("\t1 - Pesquisar por CPF e identificador")
-    print("\t0 - voltar ao menu anterior")
-    print()
-    op = input("O que deseja fazer ? ")
-    while op != "0":
-        if op == "1":
+    option = input("Deseja pesquisar alguma ordem de serviço fechada ? (s/n) ")
+    if option == "s":
+        if id in os_fechada:
             os.system("clear")
-            print("Por favor, insira o CPF")
-            print("Apenas números.")
+            print_ord_serv_fechad(id)
             print()
-            cpf = insert_cpf()
-            #verif = checker_cpf_br(cpf)#
-            #re_insert_cpf(verif)#
-            if cpf in clientes:
-                os.system("clear")
-                print("Por favor, insira o identificador do veiculo")
-                print("Exemplo: ABC1D23")
-                print()
-                id = input("Identificador: ")
-                id = data(id)
-                if id in os_aberta:
-                    print_ord_serv_fechad()
-                    input("Tecle ENTER para continuar")
-                else:
-                    print("IDENTIFICADOR NÃO CADASTRADO!!!")
-                    input("Tecle ENTER para continuar")
-            else:
-                print("CPF NÃO CADASTRADO!!!")
-                input("Tecle ENTER para continuar")
-        else:
-            os.system("clear")
-            print("OPERAÇÃO INVÁLIDA!!!")
             input("Tecle ENTER para continuar")
-
+        else:
+            print("IDENTIFICADOR NÃO CADASTRADO!!!")
+            print()
+            input("Tecle ENTER para continuar")
+    elif option != "n" and option != "s":
+        data_invalid()
 
 
 
