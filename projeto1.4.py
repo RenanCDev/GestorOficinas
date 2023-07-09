@@ -13,7 +13,7 @@ os_aberta = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SER
 os_fechada = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
 
 
-
+### A função "def checker_cpf_" foi baseada nos slides e aulas do professor Flavius Gorgonio(Semana 16 - Subprogramas, Passagem de Parâmetros, Variáveis Locais e Globais (19/06/2023 - 22/06/2023))### 
 def checker_cpf_br(cpf):
     list_cpf = list(cpf) 
     if len(list_cpf) != 11:
