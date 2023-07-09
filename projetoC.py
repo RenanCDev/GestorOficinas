@@ -101,10 +101,8 @@ def pesq_clientes():
             if option == "1":
                 cpf
                 clientes[cpf] = edit.edit_cad_client(cpf)
-                print(clientes)
                 arquivs.insert("clientes.dat", clientes)
                 print()
-                print(clientes)
                 input("Tecle ENTER para continuar")
             elif option == "2":
                 prt.print_client(cpf)

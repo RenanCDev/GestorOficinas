@@ -6,12 +6,12 @@ def insert(doc, data):
   doc.close()
 
 def read_all(doc):
-  list_arquiv = {}
+  list = {}
   try:
     arquiv = open(doc, 'rb')
-    list_arquiv = pickle.load(arquiv)
+    list = pickle.load(arquiv)
     arquiv.close()
   except:
     doc = open(doc, 'wb')
     doc.close()
-  return list_arquiv
+  return list
