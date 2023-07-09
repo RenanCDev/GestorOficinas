@@ -2,6 +2,7 @@ import os
 import func_insert
 import func_print
 import database
+import pickle
 
 
 

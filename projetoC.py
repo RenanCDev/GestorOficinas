@@ -6,6 +6,7 @@ import func_insert
 import func_print
 import func_edit
 import func_option
+import pickle
 
 
 
