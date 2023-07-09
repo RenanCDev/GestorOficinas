@@ -2,7 +2,6 @@
 ### PROJECT - SisGORA ###
 #########################
 import os
-from unicodedata import name
 
 
 
@@ -174,27 +173,6 @@ def transf_ord_serv_abert(id):
     print("Valor da mão de obra: ",os_aberta[id][6])
     print()
     print("Refrigerista: ",os_aberta[id][7])
-    print()
-
-
-
-def print_orcament_0(id):
-    os.system("clear")
-    print("CPF: ",orcamentos[id][0])
-    print()
-    print("Modelo: ",orcamentos[id][1])
-    print()
-    print("Identificador: ",orcamentos[id][2])
-    print()
-    print("Problema: ", orcamentos[id][3])
-    print()
-    print("Serviço: ",orcamentos[id][4])
-    print()
-    print("Valor do serviço: ", orcamentos[id][5])
-    print()
-    print("Valor da mão de obra: ", orcamentos[id][6])
-    print()
-    print("Refrigerista: ", orcamentos[id][7])
     print()
 
 
@@ -952,11 +930,11 @@ def pesq_orcament():
     if option == "1":
             id = insert_id()
             if id in orcamentos:
-                print_orcament_0(id)
+                print_orcament(id)
                 option = option_orcament()
                 while option != "0" and option != "1" and option != "2" and option != "3":
                     data_invalid()
-                    print_orcament_0(id)
+                    print_orcament(id)
                     option = option_orcament()
                 if option == "1":
                     os.system("clear")
@@ -995,7 +973,7 @@ def pesq_ord_serv_abert():
         option = option_ord_serv_abert()
         while option != "0" and option != "1" and option != "2" and option != "3":
             data_invalid()
-            print_orcament_0(id)
+            print_ord_serv_abert0(id)
             option = option_ord_serv_abert()
         if option == "1":
             os.system("clear")
