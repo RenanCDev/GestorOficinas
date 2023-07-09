@@ -1,7 +1,6 @@
 import os
 import verify 
-import func_print
-import pickle
+import prt
 
 
 
@@ -27,7 +26,7 @@ def insert_cpf():
     cpf = input("CPF: ")
     verif = verify.checker_cpf_br(cpf)
     while verif != True:
-        func_print.data_invalid()
+        prt.data_invalid()
         os.system("clear")
         print("Por favor, insira o CPF")
         print("Apenas números.")
@@ -50,7 +49,7 @@ def insert_cel():
     cel = input("Celular: ")
     verif = verify.checker_cel_br(cel)
     while verif != True:
-        func_print.data_invalid()
+        prt.data_invalid()
         os.system("clear")
         print("Por favor, digite o celular.")
         print("Exemplo: DD N NNNN NNNN.")
@@ -73,7 +72,7 @@ def insert_name():
     name = input("Nome: ")
     verif = verify.checker_name(name)
     while verif != True:
-        func_print.data_invalid()
+        prt.data_invalid()
         os.system("clear")
         print("Por favor, insira o nome completo")
         print("Apenas letras.")
@@ -148,7 +147,7 @@ def insert_val_servic():
     val_servic = input("Valor: ")
     verif = val_servic.isdigit()
     while verif != True:
-        func_print.data_invalid()
+        prt.data_invalid()
         val_servic = input("Valor do serviço: ")
         verif = val_servic.isdigit()
     return val_servic
@@ -163,7 +162,7 @@ def insert_val_m_obra():
     val_m_obra = input("Valor: ")
     verif = val_m_obra.isdigit()
     while verif != True:
-        func_print.data_invalid()
+        prt.data_invalid()
         val_m_obra = input("Valor da mão de obra: ")
         verif = val_m_obra.isdigit()
     return int(val_m_obra)

@@ -1,7 +1,3 @@
-import pickle
-
-
-
 ### A função "def checker_cpf_" foi baseada nos slides e aulas do professor Flavius Gorgonio(Semana 16 - Subprogramas, Passagem de Parâmetros, Variáveis Locais e Globais (19/06/2023 - 22/06/2023))### 
 def checker_cpf_br(cpf):
     list_cpf = list(cpf) 

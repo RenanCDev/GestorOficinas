@@ -1,20 +1,31 @@
 #########################
 ### PROJECT - SisGORA ###
 #########################
+
+
+
 import os
-import func_insert
-import func_print
-import func_edit
-import func_option
-import pickle
+import insert
+import prt
+import edit
+import opt
+import arquivs
 
 
 
-clientes = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
-colaboradores = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
-orcamentos = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
-os_aberta = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
-os_fechada = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
+clientes = {}
+colaboradores = {}
+orcamentos = {}
+ord_serv_abert = {}
+ord_serv_fechad = {}
+
+
+
+clientes = arquivs.read_all("clientes.dat")
+colaboradores = arquivs.read_all("colaboradores.dat")
+orcamentos = arquivs.read_all("orcamentos.dat")
+ord_serv_abert = arquivs.read_all("ord_serv_abert.dat")
+ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 
@@ -61,14 +72,15 @@ def menu_clientes():
 
 
 def cad_clientes():
-    cpf = func_insert.insert_cpf()
+    cpf = insert.insert_cpf()
     if cpf not in clientes:
-        cel = func_insert.insert_cel()
+        cel = insert.insert_cel()
         os.system("clear")
-        name = func_insert.insert_name()
-        nasciment = func_insert.insert_nasciment()
+        name = insert.insert_name()
+        nasciment = insert.insert_nasciment()
         os.system("clear")
         clientes[cpf] = [cel, nasciment, name]  
+        arquivs.insert("clientes.dat", clientes)
         print("Cadastro realizado com sucesso!")
         print()
         input("Tecle ENTER para continuar")
@@ -81,29 +93,32 @@ def cad_clientes():
 
 
 def pesq_clientes():
-    cpf = func_insert.insert_cpf()
+    cpf = insert.insert_cpf()
     if cpf in clientes:
-        func_print.print_client(cpf)
-        option = func_option.option_pesq_cad()
+        prt.print_client(cpf)
+        option = opt.option_pesq_cad()
         if option != "0":
             if option == "1":
                 cpf
-                clientes[cpf] = func_edit.edit_cad_client(cpf)
-                print("Cadastro alterado com sucesso!")
+                clientes[cpf] = edit.edit_cad_client(cpf)
+                print(clientes)
+                arquivs.insert("clientes.dat", clientes)
                 print()
+                print(clientes)
                 input("Tecle ENTER para continuar")
             elif option == "2":
-                func_print.print_client(cpf)
+                prt.print_client(cpf)
                 exc = input("Deseja mesmo excluir esse perfil? (s/n) ")
                 if exc == "s":
-                    func_edit.exc_client(cpf)
+                    edit.exc_client(cpf)
+                    arquivs.insert("clientes.dat", clientes)
                 elif exc != "n" and exc != "s":
-                    func_print.data_invalid()
+                    prt.data_invalid()
             else:
                 os.system("clear")
                 input("Tecle ENTER para continuar")
         else:
-            func_print.data_invalid()
+            prt.data_invalid()
     else:
         os.system("clear")
         print("CPF NÃO CADASTRADO!!!")
@@ -128,13 +143,14 @@ def menu_colab():
 
 
 def cad_colab():
-    cpf = func_insert.insert_cpf()
+    cpf = insert.insert_cpf()
     if cpf not in colaboradores:
-        cel = func_insert.insert_cel()
-        name = func_insert.insert_name()
-        nasciment = func_insert.insert_nasciment()
+        cel = insert.insert_cel()
+        name = insert.insert_name()
+        nasciment = insert.insert_nasciment()
         os.system("clear")
         colaboradores[cpf] = [cel, nasciment, name]  
+        arquivs.insert("colaboradores.dat", colaboradores)
         print("Cadastro realizado com sucesso!")
         print()
         input("Tecle ENTER para continuar")
@@ -147,28 +163,30 @@ def cad_colab():
 
 
 def pesq_colab():
-    cpf = func_insert.insert_cpf()
+    cpf = insert.insert_cpf()
     if cpf in colaboradores:
-        func_print.print_colab(cpf)
-        option = func_option.option_pesq_cad()
+        prt.print_colab(cpf)
+        option = opt.option_pesq_cad()
         if option != "0":
             if option == "1":
                 cpf
-                colaboradores[cpf] = func_edit.edit_cad_colab(cpf)
+                colaboradores[cpf] = edit.edit_cad_colab(cpf)
+                arquivs.insert("colaboradores.dat", colaboradores)
                 print("Cadastro alterado com sucesso!")
                 print()
                 input("Tecle ENTER para continuar")
             elif option == "2":
-                func_print.print_colab(cpf)
+                prt.print_colab(cpf)
                 exc = input("Deseja mesmo excluir esse perfil? (s/n) ")
                 if exc == "s":
-                    func_edit.exc_colab(cpf)
+                    edit.exc_colab(cpf)
+                    arquivs.insert("colaboradores.dat", colaboradores)
                 elif exc != "n" and exc != "s":
-                    func_print.data_invalid()
+                    prt.data_invalid()
             else:
-                func_print.data_invalid()
+                prt.data_invalid()
         else:
-            func_print.data_invalid()
+            prt.data_invalid()
     else:
         os.system("clear")
         print("CPF NÃO CADASTRADO!!!")
@@ -199,17 +217,18 @@ def cad_orcament():
     print("\t+---------------------------+")
     print("\t| CADASTRO - NOVO ORÇAMENTO |")
     print("\t+---------------------------+")
-    cpf = func_insert.insert_cpf()
+    cpf = insert.insert_cpf()
     if cpf in clientes:
-        model = func_insert.insert_model()
-        id = func_insert.insert_id()
-        problem = func_insert.insert_problem()
-        servic = func_insert.insert_servic()
-        val_servic = func_insert.insert_val_servic()
-        val_m_obra = func_insert.insert_val_m_obra()
+        model = insert.insert_model()
+        id = insert.insert_id()
+        problem = insert.insert_problem()
+        servic = insert.insert_servic()
+        val_servic = insert.insert_val_servic()
+        val_m_obra = insert.insert_val_m_obra()
         os.system("clear")
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
+        arquivs.insert("orcamentos.dat", orcamentos)
     else:
         print("CPF NÃO CADASTRADO!!!")
         print()
@@ -223,35 +242,39 @@ def pesq_orcament():
     print("\t| PESQUISA - ORÇAMENTOS |")
     print("\t+-----------------------+")
     print()
-    option = func_option.option_pesq_orcament()
+    option = opt.option_pesq_orcament()
     while option != "0" and option != "1":
-        func_print.data_invalid()
-        option = func_option.option_pesq_orcament() 
+        prt.data_invalid()
+        option = opt.option_pesq_orcament() 
     if option == "1":
-            id = func_insert.insert_id()
+            id = insert.insert_id()
             if id in orcamentos:
-                func_print.print_orcament_0(id)
-                option = func_option.option_orcament()
+                prt.print_orcament(id)
+                option = opt.option_orcament()
                 while option != "0" and option != "1" and option != "2" and option != "3":
-                    func_print.data_invalid()
-                    func_print.print_orcament(id)
-                    option = func_option.option_orcament()
+                    prt.data_invalid()
+                    prt.print_orcament(id)
+                    option = opt.option_orcament()
                 if option == "1":
                     os.system("clear")
                     print("Orçamento transformado em ordem de serviço aberta com sucesso!")
                     print()
                     input("Tecle ENTER para continuar")
-                    func_edit.transf_ord_serv_abert(id)
+                    edit.transf_ord_serv_abert(id)
+                    arquivs.insert("orcamentos.dat", orcamentos)
+                    arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
                 elif option == "2":
-                    orcamentos[id] = func_edit.edit_orcament(id)
+                    orcamentos[id] = edit.edit_orcament(id)
+                    arquivs.insert("orcamentos.dat", orcamentos)
                 elif option == "3":
                     del(orcamentos[id])
+                    arquivs.insert("orcamentos.dat", orcamentos)
                     os.system("clear")
                     print("Orçamento excluido com sucesso!")
                     print()
                     input("Tecle ENTER para continuar")
                 else:
-                    func_print.data_invalid()
+                    prt.data_invalid()
             else:
                 os.system("clear")
                 print("IDENTIFICADOR NÃO CADASTRADO!!!")
@@ -267,30 +290,34 @@ def pesq_ord_serv_abert():
     print("\t+------------------------+")
     print()
     input("Tecle ENTER para continuar")
-    id = func_insert.insert_id()
-    if id in os_aberta:
-        func_print.print_ord_serv_abert(id)
-        option = func_option.option_ord_serv_abert()
+    id = insert.insert_id()
+    if id in ord_serv_abert:
+        prt.print_ord_serv_abert(id)
+        option = opt.option_ord_serv_abert()
         while option != "0" and option != "1" and option != "2" and option != "3":
-            func_print.data_invalid()
-            func_print.print_orcament_0(id)
-            option = func_option.option_ord_serv_abert()
+            prt.data_invalid()
+            prt.print_orcament(id)
+            option = opt.option_ord_serv_abert()
         if option == "1":
             os.system("clear")
             print("Ordem de serviço transformada em ordem de serviço fechada com sucesso!")
             print()
             input("Tecle ENTER para continuar")
-            func_edit.transf_ord_serv_fechad(id)
+            edit.transf_ord_serv_fechad(id)
+            arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
+            arquivs.insert("ord_serv_fechad.dat", ord_serv_fechad)
         elif option == "2":
-            os_aberta[id] = func_edit.edit_ord_serv_abert(id)
+            ord_serv_abert[id] = edit.edit_ord_serv_abert(id)
+            arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
         elif option == "3":
-            del(os_aberta[id])
+            del(ord_serv_abert[id])
+            arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
             os.system("clear")
             print("Ordem de serviço excluida com sucesso!")
             print()
             input("Tecle ENTER para continuar")
         else:
-            func_print.data_invalid()
+            prt.data_invalid()
     else:
         os.system("clear")
         print("IDENTIFICADOR NÃO CADASTRADO!!!")
@@ -306,10 +333,10 @@ def pesq_ord_serv_fechad():
     print("\t+-------------------------+")
     option = input("Deseja pesquisar alguma ordem de serviço fechada ? (s/n) ")
     if option == "s":
-        id = func_insert.insert_id()
-        if id in os_fechada:
+        id = insert.insert_id()
+        if id in ord_serv_fechad:
             os.system("clear")
-            func_print.print_ord_serv_fechad(id)
+            prt.print_ord_serv_fechad(id)
             print()
             input("Tecle ENTER para continuar")
         else:
@@ -317,7 +344,7 @@ def pesq_ord_serv_fechad():
             print()
             input("Tecle ENTER para continuar")
     elif option != "n" and option != "s":
-        func_print.data_invalid()
+        prt.data_invalid()
 
 
 
@@ -497,9 +524,9 @@ def p_deb():
 
 
 
-####################
-## MAIN - PROGRAM ##
-####################
+######################
+### MAIN - PROGRAM ###
+######################
 op1 = main_menu()
 while op1 != "0":
     if op1 == "1":
@@ -512,7 +539,7 @@ while op1 != "0":
                 op3 = pesq_clientes()
                 op2 = menu_clientes()
             else:
-                func_print.data_invalid()
+                prt.data_invalid()
                 op2 = menu_clientes()
                 input("Tecle ENTER para continuar")
         op1 = main_menu()
@@ -526,7 +553,7 @@ while op1 != "0":
                 op3 = pesq_colab()
                 op2 = menu_colab()
             else:
-                func_print.data_invalid()
+                prt.data_invalid()
                 op2 = menu_colab()
                 input("Tecle ENTER para continuar")
         op1 = main_menu()
@@ -546,7 +573,7 @@ while op1 != "0":
                 op3 = pesq_ord_serv_fechad()
                 op2 = menu_ord_serv()
             else:
-                func_print.data_invalid()
+                prt.data_invalid()
                 op2 = menu_ord_serv()
         op1 = main_menu()
     elif op1 == "4":
@@ -556,7 +583,7 @@ while op1 != "0":
                 op3 = cad_venda()
                 op2 = menu_loja()
             else:
-                print("OPÇÃO INVÁLIDA!!!")
+                prt("OPÇÃO INVÁLIDA!!!")
                 input("Tecle ENTER para continuar")
                 op2 = menu_loja()
         op1 = main_menu()
@@ -573,7 +600,7 @@ while op1 != "0":
                         op4 = p_ped()
                         op3 = ped()
                     else:
-                        print("OPÇÃO INVÁLIDA!!!")
+                        prt("OPÇÃO INVÁLIDA!!!")
                         input("Tecle ENTER para continuar")
                         op3 = ped()
                 op2 = menu_adm()
@@ -584,7 +611,7 @@ while op1 != "0":
                         op4 = p_venda()
                         op3 = venda()
                     else:
-                        print("OPÇÃO INVÁLIDA!!!")
+                        prt("OPÇÃO INVÁLIDA!!!")
                         input("Tecle ENTER para continuar")
                         op3 = venda()
                 op2 = menu_adm()
@@ -598,7 +625,7 @@ while op1 != "0":
                         op4 = p_comis()
                         op3 = comis()
                     else:
-                        func_print.data_invalid()
+                        prt.data_invalid()
                         op3 = comis()
                 op2 = menu_adm()
             elif op2 == "4":
@@ -611,15 +638,15 @@ while op1 != "0":
                         op4 = p_deb()
                         op3 = deb()
                     else:
-                        func_print.data_invalid()
+                        prt.data_invalid()
                         op3 = deb()
                 op2 = menu_adm()
             else:
-                func_print.data_invalid()
+                prt.data_invalid()
                 op2 = menu_adm()
         op1 = main_menu()
     else:
-        func_print.data_invalid()
+        prt.data_invalid()
         op1 = main_menu()
 print("=             PROGRAMA ENCERRADO            =")
 print("=                ATÉ BREVE !                =")
