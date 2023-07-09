@@ -318,6 +318,15 @@ def insert_cpf():
     print("Apenas números.")
     print()
     cpf = input("CPF: ")
+    verif = checker_cpf_br(cpf)
+    while verif != True:
+        data_invalid()
+        os.system("clear")
+        print("Por favor, insira o CPF")
+        print("Apenas números.")
+        print()
+        cpf = input("CPF: ")
+        verif = checker_cpf_br(cpf)
     cpf = data(cpf)
     return cpf
 
@@ -332,6 +341,18 @@ def insert_cel():
     print("N = Número do celular.") 
     print()
     cel = input("Celular: ")
+    verif = checker_cel_br(cel)
+    while verif != True:
+        data_invalid()
+        os.system("clear")
+        print("Por favor, digite o celular.")
+        print("Exemplo: DD N NNNN NNNN.")
+        print()
+        print("D = DDD do estado.")
+        print("N = Número do celular.") 
+        print()
+        cel = input("Celular: ")
+        verif = checker_cel_br(cel)
     cel = data(cel)
     return cel
 
@@ -343,6 +364,15 @@ def insert_name():
     print("Apenas letras.")
     print()
     name = input("Nome: ")
+    verif = checker_name(name)
+    while verif != True:
+        data_invalid()
+        os.system("clear")
+        print("Por favor, insira o nome completo")
+        print("Apenas letras.")
+        print()
+        name = input("Nome: ")
+        verif = checker_name(name)
     name = name.upper()
     return name
 
@@ -575,14 +605,6 @@ def edit_orcament(id):
         if edit != "n":
             data_invalid()
     print_orcament(id)
-    edit = ("Deseja alterar o modelo? (s/n) ")
-    if edit == "s":    
-        model = insert_model()
-    else:
-        model = orcamentos[id][1]
-        if edit != "n":
-            data_invalid()
-    print_orcament(id)
     edit = input("Deseja alterar o problema? (s/n) ")
     if edit == "s":
         problem = insert_problem()
@@ -623,6 +645,7 @@ def edit_orcament(id):
         mec = orcamentos[id][7]
         if edit != "n":
             data_invalid()
+    model = orcamentos[id][1]
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     return orcamentos[id]
 
@@ -757,25 +780,10 @@ def menu_clientes():
 
 def cad_clientes():
     cpf = insert_cpf()
-    verif = checker_cpf_br(cpf)
-    while verif != True:
-        data_invalid()
-        cpf = insert_cpf()
-        verif = checker_cpf_br(cpf)
     if cpf not in clientes:
         cel = insert_cel()
-        verif = checker_cel_br(cel)
-        while verif != True:
-            data_invalid()
-            cel = insert_cel()
-            verif = checker_cel_br(cel)
         os.system("clear")
         name = insert_name()
-        verif = checker_name(name)
-        while verif != True:
-            data_invalid()
-            name = insert_name()
-            verif = checker_name(name)
         nasciment = insert_nasciment()
         os.system("clear")
         clientes[cpf] = [cel, nasciment, name]  
@@ -792,11 +800,6 @@ def cad_clientes():
 
 def pesq_clientes():
     cpf = insert_cpf()
-    verif = checker_cpf_br(cpf)
-    while verif != True:
-        data_invalid()
-        cpf = insert_cpf()
-        verif = checker_cpf_br(cpf)
     if cpf in clientes:
         print_client(cpf)
         option = option_pesq_cad()
@@ -844,23 +847,9 @@ def menu_colab():
 
 def cad_colab():
     cpf = insert_cpf()
-    verif = checker_cpf_br(cpf)
-    while verif != True:
-        data_invalid()
-        cpf = insert_cpf()
-        verif = checker_cpf_br()
     if cpf not in colaboradores:
         cel = insert_cel()
-        verif = checker_cel_br(cel)
-        while verif != True:
-            data_invalid()
-            cel = insert_cel()
-            verif = checker_cel_br()
         name = insert_name()
-        verif = checker_name(name)
-        while verif != True:
-            name = insert_name()
-            verif = checker_name()
         nasciment = insert_nasciment()
         os.system("clear")
         colaboradores[cpf] = [cel, nasciment, name]  
@@ -877,11 +866,6 @@ def cad_colab():
 
 def pesq_colab():
     cpf = insert_cpf()
-    verif = checker_cpf_br(cpf)
-    while verif != True:
-        data_invalid()
-        cpf = insert_cpf()
-        verif = checker_cpf_br(cpf)     
     if cpf in colaboradores:
         print_colab(cpf)
         option = option_pesq_cad()
@@ -934,11 +918,6 @@ def cad_orcament():
     print("\t| CADASTRO - NOVO ORÇAMENTO |")
     print("\t+---------------------------+")
     cpf = insert_cpf()
-    verif = checker_cpf_br(cpf)
-    while verif != True:
-        data_invalid()
-        cpf = insert_cpf()
-        verif = checker_cpf_br(cpf)
     if cpf in clientes:
         model = insert_model()
         id = insert_id()
@@ -976,14 +955,19 @@ def pesq_orcament():
                     print_orcament_0(id)
                     option = option_orcament()
                 if option == "1":
+                    os.system("clear")
+                    print("Orçamento transformado em ordem de serviço aberta com sucesso!")
+                    print()
+                    input("Tecle ENTER para continuar")
                     transf_ord_serv_abert(id)
                 elif option == "2":
                     orcamentos[id] = edit_orcament(id)
                 elif option == "3":
                     del(orcamentos[id])
+                    os.system("clear")
                     print("Orçamento excluido com sucesso!")
                     print()
-                    input("Tecle enter para continuar")
+                    input("Tecle ENTER para continuar")
                 else:
                     data_invalid()
             else:
@@ -999,9 +983,11 @@ def pesq_ord_serv_abert():
     print("\t+------------------------+")
     print("\t| PESQUISA - OSs ABERTAS |")
     print("\t+------------------------+")
+    print()
     input("Tecle ENTER para continuar")
     id = insert_id()
     if id in os_aberta:
+        print_ord_serv_abert0()
         option = option_pesq_cad()
         if option != "0":
             if option == "1":
