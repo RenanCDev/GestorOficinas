@@ -9,8 +9,8 @@ from unicodedata import name
 clientes = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
 colaboradores = {"11729951414":["83999008017", "22071999", "RENAN MISSIAS RODRIGUES ALVES DA COSTA"]}
 orcamentos = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
-os_aberta = {}
-os_fechada = {}
+os_aberta = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
+os_fechada = {"ABC1D23":["11729951414", "GM - CORSA", "ABC1D23", "PROBLEMA", "SERVIÇO", 500, 280, "ARON SILVA"]}
 
 
 
@@ -221,21 +221,29 @@ def print_ord_serv_abert0(id):
 
 
 def print_ord_serv_abert(id):
-    cpf = os_aberta[id][0], print("CPF: ",cpf)
+    cpf = os_aberta[id][0]
+    print("CPF: ",cpf)
     print()
-    model = os_aberta[id][1], print("Modelo: ",model)
+    model = os_aberta[id][1]
+    print("Modelo: ",model)
     print()
-    id = os_aberta[id][2], print("Identificador: ",id)
+    id = os_aberta[id][2]
+    print("Identificador: ",id)
     print()
-    problem = os_aberta[id][3], print("Problema: ", problem)
+    problem = os_aberta[id][3]
+    print("Problema: ", problem)
     print()
-    servic = os_aberta[id][4], print("Serviço: ",servic)
+    servic = os_aberta[id][4]
+    print("Serviço: ",servic)
     print()
-    val_servic = os_aberta[id][5], print("Valor do serviço: ", val_servic)
+    val_servic = os_aberta[id][5]
+    print("Valor do serviço: ", val_servic)
     print()
-    val_m_obra = os_aberta[id][6], print("Valor da mão de obra: ", val_m_obra)
+    val_m_obra = os_aberta[id][6]
+    print("Valor da mão de obra: ", val_m_obra)
     print()
-    mec = os_aberta[id][7], print("Refrigerista: ", mec)
+    mec = os_aberta[id][7]
+    print("Refrigerista: ", mec)
     print()
 
 
@@ -653,71 +661,57 @@ def edit_orcament(id):
 
 def edit_ord_serv_abert(id):
     os.system("clear")
-    print_ord_serv_abert(id)
+    os_aberta[id]
+    print_orcament(id)
     edit = input("Deseja alterar o CPF? (s/n) ")   
     if edit == "s":
         cpf = insert_cpf()
     else:
         cpf = os_aberta[id][0]
-        if edit != "n" and edit != "s":
+        if edit != "n":
             data_invalid()
-    print_ord_serv_abert(id)
-    edit = ("Deseja alterar o modelo? (s/n) ")
-    if edit == "s":    
-        model = insert_model()
-    else:
-        model = os_aberta[id][1]
-        if edit != "n" and edit != "n":
-            data_invalid()
-    print_ord_serv_abert(id)
-    edit = input("Deseja alterar o identificador: ")
-    if edit == "s":
-        id = insert_id()
-    else:
-        id = os_aberta[id][2]
-        if edit != "n" and edit != "n":
-            data_invalid()
-    print_ord_serv_abert(id)
+    print_orcament(id)
     edit = input("Deseja alterar o problema? (s/n) ")
     if edit == "s":
         problem = insert_problem()
     else:
         problem = os_aberta[id][3]
-        if edit != "n" and edit != "n":
+        if edit != "n":
             data_invalid()
-    print_ord_serv_abert(id)
+    print_orcament(id)
     edit = input("Deseja alterar o serviço? (s/n) ")
     if edit == "s":
         servic = insert_servic()
     else:
         servic = os_aberta[id][4]
-        if edit != "n" and edit != "n":
+        if edit != "n":
             data_invalid()
-    print_ord_serv_abert(id)
+    print_orcament(id)
     edit = input("Deseja alterar o valor do serviço? (s/n) ")
     if edit == "s":
         val_servic = insert_val_servic()
     else:
         val_servic = os_aberta[id][5]
-        if edit != "n" and edit != "n":
+        if edit != "n":
             data_invalid()
-    print_ord_serv_abert(id)
+    print_orcament(id)
     edit = input("Deseja alterar o valor da mão de obra? (s/n) ")
     if edit == "s":
         val_m_obra = insert_val_m_obra()
     else:
         val_m_obra = os_aberta[id][6]
-        if edit != "n" and edit != "n":
+        if edit != "n":
             data_invalid()
-    print_ord_serv_abert(id)
+    print_orcament(id)
     edit = input("Deseja alterar o refrigerista? (s/n) ")
     if edit == "s":
         os.system("clear")
         mec = input("Novo refrigerista: ") 
     else:
         mec = os_aberta[id][7]
-        if edit != "n" and edit != "n":
+        if edit != "n":
             data_invalid()
+    model = os_aberta[id][1]
     os_aberta[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     return os_aberta[id]
 
@@ -734,6 +728,16 @@ def option_orcament():
     option = input("Escolha uma opção: ")
     return option
 
+
+def option_ord_serv_abert():
+    print()
+    print("\t1 - Tornar o O.S. em O.S. fechada.")
+    print("\t2 - Editar O.S.")
+    print("\t3 - Excluir O.S.")
+    print("\t0 - Voltar ao menu anterior")
+    print()
+    option = input("Escolha uma opção: ")
+    return option
 
 
 def main_menu():
@@ -987,31 +991,30 @@ def pesq_ord_serv_abert():
     input("Tecle ENTER para continuar")
     id = insert_id()
     if id in os_aberta:
-        print_ord_serv_abert0()
-        option = option_pesq_cad()
-        if option != "0":
-            if option == "1":
-                id
-                transf_ord_serv_fechad(id)
-            elif option == "2":
-                os.system("clear")
-                print_ord_serv_abert(id)
-                if option != "0":
-                    if option == "1":
-                        transf_ord_serv_fechad(id)
-                    elif option == "2":
-                        id
-                        os_aberta[id] = edit_ord_serv_abert(id)
-                    elif option == "3":
-                        del(os_aberta[id])
-                        print("Ordem de serviço excluida com sucesso!")
-                        print()
-                        input("Tecle ENTER para continuar")
-                    else:
-                        data_invalid()
-            else:
-                data_invalid()
+        print_ord_serv_abert0(id)
+        option = option_ord_serv_abert()
+        while option != "0" and option != "1" and option != "2" and option != "3":
+            data_invalid()
+            print_orcament_0(id)
+            option = option_ord_serv_abert()
+        if option == "1":
+            os.system("clear")
+            print("Ordem de serviço transformada em ordem de serviço fechada com sucesso!")
+            print()
+            input("Tecle ENTER para continuar")
+            transf_ord_serv_fechad(id)
+        elif option == "2":
+            os_aberta[id] = edit_ord_serv_abert(id)
+        elif option == "3":
+            del(os_aberta[id])
+            os.system("clear")
+            print("Ordem de serviço excluida com sucesso!")
+            print()
+            input("Tecle ENTER para continuar")
+        else:
+            data_invalid()
     else:
+        os.system("clear")
         print("IDENTIFICADOR NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
@@ -1025,6 +1028,7 @@ def pesq_ord_serv_fechad():
     print("\t+-------------------------+")
     option = input("Deseja pesquisar alguma ordem de serviço fechada ? (s/n) ")
     if option == "s":
+        id = insert_id()
         if id in os_fechada:
             os.system("clear")
             print_ord_serv_fechad(id)
