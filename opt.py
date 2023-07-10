@@ -3,7 +3,7 @@ import os
 
 
 def option_pesq_cad():
-    os.system("clear")
+    os.system("clear || cls")
     print()
     print("\t1 - Editar cadastro")
     print("\t2 - Excluir cadastro")
@@ -27,7 +27,7 @@ def option_orcament():
 
 
 def option_pesq_orcament():
-    os.system("clear")
+    os.system("clear || cls")
     print()
     print("\t1 - Pesquisar por identificador")
     print("\t0 - Voltar ao menu anterior")

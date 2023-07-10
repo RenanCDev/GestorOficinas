@@ -21,19 +21,20 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 def data_invalid():
-    reload
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     print("ENTRADA INVÁLIDA!!!")
     print()
     input("Pressione ENTER continuar")
-    os.system("clear")
-    reload
+    os.system("clear || cls")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_client(cpf):
-    reload
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    # o cliente printado aqui é o que ta salvo no arquivo, então você apenas verá novos dados depois que atualizar o arquivo
+    os.system("clear || cls")
     cel = clientes[cpf][0]
     nasc = clientes[cpf][1]
     name = clientes[cpf][2]
@@ -42,13 +43,13 @@ def print_client(cpf):
     print("Data de nascimento: ", nasc)
     print("Nome: ", name)
     print()
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_colab(cpf):
-    reload
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     cel = colaboradores[cpf][0]
     nasc = colaboradores[cpf][1]
     name = colaboradores[cpf][2]
@@ -57,13 +58,13 @@ def print_colab(cpf):
     print("Data de nascimento: ", nasc)
     print("Nome: ", name)
     print()
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_orcament(id):
-    reload
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     orcamentos[id]
     cpf = orcamentos[id][0]
     print("CPF: ",cpf)
@@ -90,12 +91,12 @@ def print_orcament(id):
     print("Refrigerista: ", mec)
     print()
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_ord_serv_abert(id):
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     cpf = ord_serv_abert[id][0]
     print("CPF: ",cpf)
     print()
@@ -120,13 +121,13 @@ def print_ord_serv_abert(id):
     mec = ord_serv_abert[id][7]
     print("Refrigerista: ", mec)
     print()
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_ord_serv_fechad(id):
-    reload
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     print("CPF: ",ord_serv_fechad[id][0])
     print()
     print("Modelo: ",ord_serv_fechad[id][1])
@@ -143,4 +144,4 @@ def print_ord_serv_fechad(id):
     print()
     print("Refrigerista: ",ord_serv_fechad[id][7])
     print()
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
