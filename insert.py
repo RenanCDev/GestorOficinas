@@ -150,7 +150,7 @@ def insert_val_servic():
         prt.data_invalid()
         val_servic = input("Valor do serviço: ")
         verif = val_servic.isdigit()
-    return val_servic
+    return int(val_servic)
 
 
 

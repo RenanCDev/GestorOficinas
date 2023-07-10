@@ -73,6 +73,7 @@ def menu_clientes():
 
 
 def cad_clientes():
+    reload
     cpf = insert.insert_cpf()
     if cpf not in clientes:
         cel = insert.insert_cel()
@@ -90,10 +91,12 @@ def cad_clientes():
         print("CPF já cadastrado")
         print()
         input("Tecle ENTER para continuar")
+    reload
 
 
 
 def pesq_clientes():
+    reload
     cpf = insert.insert_cpf()
     if cpf in clientes:
         prt.print_client(cpf)
@@ -124,6 +127,7 @@ def pesq_clientes():
 
 
 def menu_colab():
+    reload
     os.system("clear")
     print("\t+----------------------+")
     print("\t| MENU - COLABORADORES |")
@@ -139,6 +143,7 @@ def menu_colab():
 
 
 def cad_colab():
+    reload
     cpf = insert.insert_cpf()
     if cpf not in colaboradores:
         cel = insert.insert_cel()
@@ -155,17 +160,18 @@ def cad_colab():
         print("CPF CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
+    reload
 
 
 
 def pesq_colab():
+    reload
     cpf = insert.insert_cpf()
     if cpf in colaboradores:
         prt.print_colab(cpf)
         option = opt.option_pesq_cad()
         if option != "0":
             if option == "1":
-                cpf
                 colaboradores[cpf] = edit.edit_cad_colab(cpf)
                 print("Cadastro alterado com sucesso!")
                 print()
@@ -208,6 +214,7 @@ def menu_ord_serv():
 
 
 def cad_orcament():
+    reload
     os.system("clear")
     print("\t+---------------------------+")
     print("\t| CADASTRO - NOVO ORÇAMENTO |")
@@ -227,10 +234,12 @@ def cad_orcament():
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
+    reload
 
 
 
 def pesq_orcament():
+    reload
     os.system("clear")
     print("\t+-----------------------+")
     print("\t| PESQUISA - ORÇAMENTOS |")
@@ -272,10 +281,12 @@ def pesq_orcament():
                 print("IDENTIFICADOR NÃO CADASTRADO!!!")
                 print()
                 input("Tecle ENTER para continuar")
+    reload
 
 
 
 def pesq_ord_serv_abert():
+    reload
     os.system("clear")
     print("\t+------------------------+")
     print("\t| PESQUISA - OSs ABERTAS |")
@@ -315,10 +326,12 @@ def pesq_ord_serv_abert():
         print("IDENTIFICADOR NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
+    reload
 
 
 
 def pesq_ord_serv_fechad():
+    reload
     os.system("clear")
     print("\t+-------------------------+")
     print("\t| PESQUISA - OSs FECHADAS |")
@@ -337,6 +350,7 @@ def pesq_ord_serv_fechad():
             input("Tecle ENTER para continuar")
     elif option != "n" and option != "s":
         prt.data_invalid()
+    reload
 
 
 
