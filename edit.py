@@ -4,7 +4,6 @@ import prt
 import arquivs
 import reload
 
-
 # essas variáveis só existem nesse arquivo, importar outros arquivos apenas trará as variáveis deles se fizer:
 # from reload import variavel
 # mas isso nem sempre significa que você pegará a última versão de algo que a variável contém
