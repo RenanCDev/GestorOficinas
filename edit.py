@@ -4,9 +4,8 @@ import prt
 import arquivs
 import reload
 
-# essas variáveis só existem nesse arquivo, importar outros arquivos apenas trará as variáveis deles se fizer:
-# from reload import variavel
-# mas isso nem sempre significa que você pegará a última versão de algo que a variável contém
+
+
 clientes = {}
 colaboradores = {}
 orcamentos = {}
@@ -25,8 +24,6 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 def edit_cad_client(cpf):
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
-    print(clientes)
-    input()
     prt.print_client(cpf)
     edit = input("Deseja alterar o celular? (s/n) ")
     if edit == "s":
@@ -43,7 +40,6 @@ def edit_cad_client(cpf):
         name = clientes[cpf][1]
         if edit != "n" and edit != "s":
             prt.data_invalid()
-
     prt.print_client(cpf)
     edit = input("Deseja alterar a data de nascimento? (s/n) ")
     if edit == "s":
@@ -56,10 +52,8 @@ def edit_cad_client(cpf):
     os.system("clear || cls")
     print("Cadastro alterado com sucesso!")
     clientes[cpf] = [cel, nasciment, name]
-    print(clientes)
-    arquivs.insert("clientes.dat", clientes) # dados atualizados no arquivo, prints depois daqui conterão os novos dados
+    arquivs.insert("clientes.dat", clientes) 
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
-    print(clientes)
 
 
 
@@ -91,8 +85,7 @@ def edit_cad_colab(cpf):
         if edit != "n" and edit != "s":
             prt.data_invalid()
     os.system("clear || cls")
-    prt("Cadastro alterado com sucesso!")
-    clientes[cpf] = [cel, nasciment, name]
+    colaboradores[cpf] = [cel, nasciment, name]
     arquivs.insert("colaboradores.dat", colaboradores)
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
@@ -106,6 +99,8 @@ def edit_orcament(id):
     edit = input("Deseja alterar o CPF? (s/n) ")   
     if edit == "s":
         cpf = insert.insert_cpf()
+        while cpf not in clientes:
+            cpf = insert.insert_cpf()
     else:
         cpf = orcamentos[id][0]
         if edit != "n":
@@ -166,6 +161,8 @@ def edit_ord_serv_abert(id):
     edit = input("Deseja alterar o CPF? (s/n) ")   
     if edit == "s":
         cpf = insert.insert_cpf()
+        while cpf not in clientes:
+            cpf = insert.insert_cpf()
     else:
         cpf = ord_serv_abert[id][0]
         if edit != "n":
@@ -251,8 +248,6 @@ def transf_ord_serv_fechad(id):
     del(ord_serv_abert[id])
     arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
     arquivs.insert("ord_serv_fechad.dat", ord_serv_fechad)
-    ord_serv_abert = arquivs.read_all("ord_serv_abert.dat") 
-    ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
     os.system("clear || cls")
     print("CPF: ",ord_serv_fechad[id][0])
     print()

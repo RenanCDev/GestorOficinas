@@ -1,5 +1,11 @@
 import arquivs
-variavel = 'Teste' # variavel de exemplo
+
+
+
+#FUNÇÃO DESENVOLVIDA PELO ALUNO - MARLISON SOARES DA SILVA - 20230035407#
+
+
+
 def get_dados():
     clientes = arquivs.read_all("clientes.dat")
     colaboradores = arquivs.read_all("colaboradores.dat")

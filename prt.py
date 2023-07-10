@@ -32,8 +32,6 @@ def data_invalid():
 
 def print_client(cpf):
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
-    # o cliente printado aqui é o que ta salvo no arquivo, então você apenas verá novos dados depois que atualizar o arquivo
-    # além disso, não é necessário salvar os arquivos novamente ao terminar de printar os dados, apenas de atualizar
     os.system("clear || cls")
     cel = clientes[cpf][0]
     nasc = clientes[cpf][1]
@@ -69,6 +67,9 @@ def print_orcament(id):
     cpf = orcamentos[id][0]
     print("CPF: ",cpf)
     print()
+    name = clientes[cpf][2]
+    print("Nome: ", name)
+    print()
     model = orcamentos[id][1]
     print("Modelo: ",model)
     print()
@@ -100,6 +101,9 @@ def print_ord_serv_abert(id):
     cpf = ord_serv_abert[id][0]
     print("CPF: ",cpf)
     print()
+    name = clientes[cpf][2]
+    print("Nome: ", name)
+    print()
     model = ord_serv_abert[id][1]
     print("Modelo: ",model)
     print()
@@ -127,8 +131,12 @@ def print_ord_serv_abert(id):
 
 def print_ord_serv_fechad(id):
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    cpf = ord_serv_fechad[id][0]
     os.system("clear || cls")
     print("CPF: ",ord_serv_fechad[id][0])
+    print()
+    name = clientes[cpf][2]
+    print("Nome: ", name)
     print()
     print("Modelo: ",ord_serv_fechad[id][1])
     print()

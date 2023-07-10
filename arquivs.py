@@ -1,5 +1,12 @@
 import pickle
 
+
+
+#FUNÇÃO DESENVOLVIDA PELO ALUNO - JEFERSON HENRIQUE SOBRINHO - 20230064991#
+#ADAPTADA PELO ALUNO - RENAN MISSIAS RODRIGUES ALVES DA COSTA - 20230078244#
+
+
+
 def insert(doc, data):
   doc = open(doc, 'wb')
   pickle.dump(data, doc)

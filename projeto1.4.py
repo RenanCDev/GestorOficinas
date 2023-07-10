@@ -4,6 +4,18 @@
 
 
 
+#PROGRAMA IDEALIZADO E DEZENVOLVIDO POR: RENAN MISSIAS RODRIGUES ALVES DA COSTA##
+#NÚMERO DE MATRICULA: 20230078244#
+#COLABORADORES E CONSULTORES:#
+##PROFESSOR - FLAVIUS GORGONIO##
+##ALUNO - GUILHERME DE MEDEIROS SANTOS - 20230032755##
+##ALUNO - DENNER BISMARCK DE LUCENA FRANÇA - 20230031014##
+##ALUNO - ARON DA SILVA BEZERRA - 20230059632##
+##ALUNO - JEFERSON HENRIQUE SOBRINHO - 20230064991##
+##ALUNO - MARLISON SOARES DA SILVA - 20230035407##
+
+
+
 import os
 import insert
 import prt
@@ -73,7 +85,7 @@ def menu_clientes():
 
 
 def cad_clientes():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     cpf = insert.insert_cpf()
     if cpf not in clientes:
         cel = insert.insert_cel()
@@ -91,12 +103,11 @@ def cad_clientes():
         print("CPF já cadastrado")
         print()
         input("Tecle ENTER para continuar")
-    reload
 
 
 
 def pesq_clientes():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     cpf = insert.insert_cpf()
     if cpf in clientes:
         prt.print_client(cpf)
@@ -122,12 +133,10 @@ def pesq_clientes():
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
-    reload
 
 
 
 def menu_colab():
-    reload
     os.system("clear || cls")
     print("\t+----------------------+")
     print("\t| MENU - COLABORADORES |")
@@ -143,7 +152,7 @@ def menu_colab():
 
 
 def cad_colab():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     cpf = insert.insert_cpf()
     if cpf not in colaboradores:
         cel = insert.insert_cel()
@@ -160,12 +169,11 @@ def cad_colab():
         print("CPF CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
-    reload
 
 
 
 def pesq_colab():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     cpf = insert.insert_cpf()
     if cpf in colaboradores:
         prt.print_colab(cpf)
@@ -192,7 +200,6 @@ def pesq_colab():
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
-    reload
 
 
 
@@ -214,7 +221,7 @@ def menu_ord_serv():
 
 
 def cad_orcament():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     os.system("clear || cls")
     print("\t+---------------------------+")
     print("\t| CADASTRO - NOVO ORÇAMENTO |")
@@ -230,16 +237,16 @@ def cad_orcament():
         os.system("clear || cls")
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
+        arquivs.insert("orcamentos.dat", orcamentos)
     else:
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
-    reload
 
 
 
 def pesq_orcament():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     os.system("clear || cls")
     print("\t+-----------------------+")
     print("\t| PESQUISA - ORÇAMENTOS |")
@@ -250,6 +257,7 @@ def pesq_orcament():
         prt.data_invalid()
         option = opt.option_pesq_orcament() 
     if option == "1":
+            clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
             id = insert.insert_id()
             if id in orcamentos:
                 prt.print_orcament(id)
@@ -281,12 +289,11 @@ def pesq_orcament():
                 print("IDENTIFICADOR NÃO CADASTRADO!!!")
                 print()
                 input("Tecle ENTER para continuar")
-    reload
 
 
 
 def pesq_ord_serv_abert():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     os.system("clear || cls")
     print("\t+------------------------+")
     print("\t| PESQUISA - OSs ABERTAS |")
@@ -307,8 +314,6 @@ def pesq_ord_serv_abert():
             print()
             input("Tecle ENTER para continuar")
             edit.transf_ord_serv_fechad(id)
-            arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
-            arquivs.insert("ord_serv_fechad.dat", ord_serv_fechad)
         elif option == "2":
             ord_serv_abert[id] = edit.edit_ord_serv_abert(id)
             arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
@@ -326,12 +331,11 @@ def pesq_ord_serv_abert():
         print("IDENTIFICADOR NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
-    reload
 
 
 
 def pesq_ord_serv_fechad():
-    reload
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     os.system("clear || cls")
     print("\t+-------------------------+")
     print("\t| PESQUISA - OSs FECHADAS |")
@@ -350,7 +354,6 @@ def pesq_ord_serv_fechad():
             input("Tecle ENTER para continuar")
     elif option != "n" and option != "s":
         prt.data_invalid()
-    reload
 
 
 
@@ -533,6 +536,9 @@ def p_deb():
 ######################
 ### MAIN - PROGRAM ###
 ######################
+
+
+
 op1 = main_menu()
 while op1 != "0":
     if op1 == "1":
