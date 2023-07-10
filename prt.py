@@ -1,6 +1,6 @@
 import os
 import arquivs
-
+import reload
 
 
 clientes = {}
@@ -20,16 +20,21 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 def data_invalid():
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     print("ENTRADA INVÁLIDA!!!")
     print()
     input("Pressione ENTER continuar")
-    os.system("clear")
+    os.system("clear || cls")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_client(cpf):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    # o cliente printado aqui é o que ta salvo no arquivo, então você apenas verá novos dados depois que atualizar o arquivo
+    # além disso, não é necessário salvar os arquivos novamente ao terminar de printar os dados, apenas de atualizar
+    os.system("clear || cls")
     cel = clientes[cpf][0]
     nasc = clientes[cpf][1]
     name = clientes[cpf][2]
@@ -38,11 +43,13 @@ def print_client(cpf):
     print("Data de nascimento: ", nasc)
     print("Nome: ", name)
     print()
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_colab(cpf):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     cel = colaboradores[cpf][0]
     nasc = colaboradores[cpf][1]
     name = colaboradores[cpf][2]
@@ -51,11 +58,13 @@ def print_colab(cpf):
     print("Data de nascimento: ", nasc)
     print("Nome: ", name)
     print()
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_orcament(id):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     orcamentos[id]
     cpf = orcamentos[id][0]
     print("CPF: ",cpf)
@@ -82,10 +91,12 @@ def print_orcament(id):
     print("Refrigerista: ", mec)
     print()
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_ord_serv_abert(id):
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     cpf = ord_serv_abert[id][0]
     print("CPF: ",cpf)
     print()
@@ -110,11 +121,13 @@ def print_ord_serv_abert(id):
     mec = ord_serv_abert[id][7]
     print("Refrigerista: ", mec)
     print()
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def print_ord_serv_fechad(id):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     print("CPF: ",ord_serv_fechad[id][0])
     print()
     print("Modelo: ",ord_serv_fechad[id][1])
@@ -131,3 +144,4 @@ def print_ord_serv_fechad(id):
     print()
     print("Refrigerista: ",ord_serv_fechad[id][7])
     print()
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()

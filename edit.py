@@ -2,9 +2,11 @@ import os
 import insert
 import prt
 import arquivs
+import reload
 
-
-
+# essas variáveis só existem nesse arquivo, importar outros arquivos apenas trará as variáveis deles se fizer:
+# from reload import variavel
+# mas isso nem sempre significa que você pegará a última versão de algo que a variável contém
 clientes = {}
 colaboradores = {}
 orcamentos = {}
@@ -22,6 +24,7 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 def edit_cad_client(cpf):
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     print(clientes)
     input()
     prt.print_client(cpf)
@@ -40,6 +43,7 @@ def edit_cad_client(cpf):
         name = clientes[cpf][1]
         if edit != "n" and edit != "s":
             prt.data_invalid()
+
     prt.print_client(cpf)
     edit = input("Deseja alterar a data de nascimento? (s/n) ")
     if edit == "s":
@@ -49,16 +53,18 @@ def edit_cad_client(cpf):
         nasciment = clientes[cpf][2]
         if edit != "n" and edit != "s":
             prt.data_invalid()
-    os.system("clear")
+    os.system("clear || cls")
     print("Cadastro alterado com sucesso!")
     clientes[cpf] = [cel, nasciment, name]
     print(clientes)
-    arquivs.insert("clientes.dat", clientes)
+    arquivs.insert("clientes.dat", clientes) # dados atualizados no arquivo, prints depois daqui conterão os novos dados
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     print(clientes)
 
 
 
 def edit_cad_colab(cpf):
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     prt.print_colab(cpf)
     edit = input("Deseja alterar o celular? (s/n) ")
     if edit == "s":
@@ -84,15 +90,17 @@ def edit_cad_colab(cpf):
         nasciment = colaboradores[cpf][2]
         if edit != "n" and edit != "s":
             prt.data_invalid()
-    os.system("clear")
+    os.system("clear || cls")
     prt("Cadastro alterado com sucesso!")
     clientes[cpf] = [cel, nasciment, name]
     arquivs.insert("colaboradores.dat", colaboradores)
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def edit_orcament(id):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     orcamentos[id]
     prt.print_orcament(id)
     edit = input("Deseja alterar o CPF? (s/n) ")   
@@ -137,7 +145,7 @@ def edit_orcament(id):
     prt.print_orcament(id)
     edit = input("Deseja alterar o refrigerista? (s/n) ")
     if edit == "s":
-        os.system("clear")
+        os.system("clear || cls")
         mec = input("Novo refrigerista: ") 
     else:
         mec = orcamentos[id][7]
@@ -146,11 +154,13 @@ def edit_orcament(id):
     model = orcamentos[id][1]
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     arquivs.insert("orcamentos.dat", orcamentos)
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def edit_ord_serv_abert(id):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     ord_serv_abert[id]
     prt.print_orcament(id)
     edit = input("Deseja alterar o CPF? (s/n) ")   
@@ -195,7 +205,7 @@ def edit_ord_serv_abert(id):
     prt.print_orcament(id)
     edit = input("Deseja alterar o refrigerista? (s/n) ")
     if edit == "s":
-        os.system("clear")
+        os.system("clear || cls")
         mec = input("Novo refrigerista: ") 
     else:
         mec = ord_serv_abert[id][7]
@@ -204,15 +214,17 @@ def edit_ord_serv_abert(id):
     model = ord_serv_abert[id][1]
     ord_serv_abert[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def transf_ord_serv_abert(id):
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     ord_serv_abert[id] = orcamentos[id]
     del(orcamentos[id])
     arquivs.insert("orcamentos.dat", orcamentos)
     arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
-    os.system("clear")
+    os.system("clear || cls")
     print("CPF: ",ord_serv_abert[id][0])
     print()
     print("Modelo: ",ord_serv_abert[id][1])
@@ -229,17 +241,19 @@ def transf_ord_serv_abert(id):
     print()
     print("Refrigerista: ",ord_serv_abert[id][7])
     print()
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def transf_ord_serv_fechad(id):
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
     ord_serv_fechad[id] = ord_serv_abert[id]
     del(ord_serv_abert[id])
     arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
     arquivs.insert("ord_serv_fechad.dat", ord_serv_fechad)
     ord_serv_abert = arquivs.read_all("ord_serv_abert.dat") 
     ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
-    os.system("clear")
+    os.system("clear || cls")
     print("CPF: ",ord_serv_fechad[id][0])
     print()
     print("Modelo: ",ord_serv_fechad[id][1])
@@ -256,23 +270,28 @@ def transf_ord_serv_fechad(id):
     print()
     print("Refrigerista: ",ord_serv_fechad[id][7])
     print()
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def exc_client(cpf):  
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     del clientes[cpf]
     print("Perfil excluido com sucesso!")
     print()
     input("Tecle ENTER para continuar")
     arquivs.insert("clientes.dat", clientes)
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
 
 
 def exc_colab(cpf):
-    os.system("clear")
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear || cls")
     del colaboradores[cpf]
     print("Perfil excluido com sucesso!")
     print()
     input("Tecle ENTER para continuar")
     arquivs.insert("colaboradores.dat", colaboradores)
+    clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()

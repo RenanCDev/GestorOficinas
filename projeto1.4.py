@@ -31,7 +31,7 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 def main_menu():
-    os.system("clear")
+    os.system("clear || cls")
     print("#####            #####  #####  #####  #####")
     print("#                #      #   #  #  #   #   #")
     print("#      ###  ###  #      #   #  # #    #   #")
@@ -58,7 +58,7 @@ def main_menu():
 
 
 def menu_clientes():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-----------------+")
     print("\t| MENU - CLIENTES |")
     print("\t+-----------------+")
@@ -77,17 +77,17 @@ def cad_clientes():
     cpf = insert.insert_cpf()
     if cpf not in clientes:
         cel = insert.insert_cel()
-        os.system("clear")
+        os.system("clear || cls")
         name = insert.insert_name()
         nasciment = insert.insert_nasciment()
-        os.system("clear")
+        os.system("clear || cls")
         clientes[cpf] = [cel, nasciment, name]  
         arquivs.insert("clientes.dat", clientes)
         print("Cadastro realizado com sucesso!")
         print()
         input("Tecle ENTER para continuar")
     else:
-        os.system("clear")
+        os.system("clear || cls")
         print("CPF já cadastrado")
         print()
         input("Tecle ENTER para continuar")
@@ -118,7 +118,7 @@ def pesq_clientes():
                 prt.data_invalid()
                 input("Tecle ENTER para continuar")
     else:
-        os.system("clear")
+        os.system("clear || cls")
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
@@ -128,7 +128,7 @@ def pesq_clientes():
 
 def menu_colab():
     reload
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+----------------------+")
     print("\t| MENU - COLABORADORES |")
     print("\t+----------------------+")
@@ -149,14 +149,14 @@ def cad_colab():
         cel = insert.insert_cel()
         name = insert.insert_name()
         nasciment = insert.insert_nasciment()
-        os.system("clear")
+        os.system("clear || cls")
         colaboradores[cpf] = [cel, nasciment, name]  
         arquivs.insert("colaboradores.dat", colaboradores)
         print("Cadastro realizado com sucesso!")
         print()
         input("Tecle ENTER para continuar")
     else:
-        os.system("clear")
+        os.system("clear || cls")
         print("CPF CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
@@ -188,7 +188,7 @@ def pesq_colab():
         else:
             prt.data_invalid()
     else:
-        os.system("clear")
+        os.system("clear || cls")
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
@@ -197,7 +197,7 @@ def pesq_colab():
 
 
 def menu_ord_serv():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+---------------------------+")
     print("\t| MENU - ORDENS DE SERVIÇOS |")
     print("\t+---------------------------+")
@@ -215,7 +215,7 @@ def menu_ord_serv():
 
 def cad_orcament():
     reload
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+---------------------------+")
     print("\t| CADASTRO - NOVO ORÇAMENTO |")
     print("\t+---------------------------+")
@@ -227,7 +227,7 @@ def cad_orcament():
         servic = insert.insert_servic()
         val_servic = insert.insert_val_servic()
         val_m_obra = insert.insert_val_m_obra()
-        os.system("clear")
+        os.system("clear || cls")
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     else:
@@ -240,7 +240,7 @@ def cad_orcament():
 
 def pesq_orcament():
     reload
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-----------------------+")
     print("\t| PESQUISA - ORÇAMENTOS |")
     print("\t+-----------------------+")
@@ -259,7 +259,7 @@ def pesq_orcament():
                     prt.print_orcament(id)
                     option = opt.option_orcament()
                 if option == "1":
-                    os.system("clear")
+                    os.system("clear || cls")
                     print("Orçamento transformado em ordem de serviço aberta com sucesso!")
                     print()
                     input("Tecle ENTER para continuar")
@@ -270,14 +270,14 @@ def pesq_orcament():
                 elif option == "3":
                     del(orcamentos[id])
                     arquivs.insert("orcamentos.dat", orcamentos)
-                    os.system("clear")
+                    os.system("clear || cls")
                     print("Orçamento excluido com sucesso!")
                     print()
                     input("Tecle ENTER para continuar")
                 else:
                     prt.data_invalid()
             else:
-                os.system("clear")
+                os.system("clear || cls")
                 print("IDENTIFICADOR NÃO CADASTRADO!!!")
                 print()
                 input("Tecle ENTER para continuar")
@@ -287,7 +287,7 @@ def pesq_orcament():
 
 def pesq_ord_serv_abert():
     reload
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+------------------------+")
     print("\t| PESQUISA - OSs ABERTAS |")
     print("\t+------------------------+")
@@ -302,7 +302,7 @@ def pesq_ord_serv_abert():
             prt.print_orcament(id)
             option = opt.option_ord_serv_abert()
         if option == "1":
-            os.system("clear")
+            os.system("clear || cls")
             print("Ordem de serviço transformada em ordem de serviço fechada com sucesso!")
             print()
             input("Tecle ENTER para continuar")
@@ -315,14 +315,14 @@ def pesq_ord_serv_abert():
         elif option == "3":
             del(ord_serv_abert[id])
             arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
-            os.system("clear")
+            os.system("clear || cls")
             print("Ordem de serviço excluida com sucesso!")
             print()
             input("Tecle ENTER para continuar")
         else:
             prt.data_invalid()
     else:
-        os.system("clear")
+        os.system("clear || cls")
         print("IDENTIFICADOR NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
@@ -332,7 +332,7 @@ def pesq_ord_serv_abert():
 
 def pesq_ord_serv_fechad():
     reload
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-------------------------+")
     print("\t| PESQUISA - OSs FECHADAS |")
     print("\t+-------------------------+")
@@ -340,7 +340,7 @@ def pesq_ord_serv_fechad():
     if option == "s":
         id = insert.insert_id()
         if id in ord_serv_fechad:
-            os.system("clear")
+            os.system("clear || cls")
             prt.print_ord_serv_fechad(id)
             print()
             input("Tecle ENTER para continuar")
@@ -355,7 +355,7 @@ def pesq_ord_serv_fechad():
 
 
 def menu_loja():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-------------+")
     print("\t| MENU - LOJA |")
     print("\t+-------------+")
@@ -369,7 +369,7 @@ def menu_loja():
 
 
 def cad_venda():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+------------------+")
     print("\t| CADASTRO - VENDA |")
     print("\t+------------------+")
@@ -380,7 +380,7 @@ def cad_venda():
 
 
 def menu_adm():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-----------------------+")
     print("\t| MENU - ADMINISTRATIVO |")
     print("\t+-----------------------+")
@@ -397,7 +397,7 @@ def menu_adm():
 
 
 def ped():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+---------+")
     print("\t| PEDIDOS |")
     print("\t+---------+")
@@ -412,7 +412,7 @@ def ped():
 
 
 def cad_ped():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-------------------+")
     print("\t| CADASTRO - PEDIDO |")
     print("\t+-------------------+")
@@ -423,7 +423,7 @@ def cad_ped():
 
 
 def p_ped():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+--------------------+")
     print("\t| PESQUISA - PEDIDOS |")
     print("\t+--------------------+")
@@ -434,7 +434,7 @@ def p_ped():
 
 
 def venda():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+--------+")
     print("\t| VENDAS |")
     print("\t+--------+")
@@ -448,7 +448,7 @@ def venda():
 
     
 def p_venda():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-------------------+")
     print("\t| PESQUISA - VENDAS |")
     print("\t+-------------------+")
@@ -458,7 +458,7 @@ def p_venda():
 
 
 def comis():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-----------+")
     print("\t| COMISSÕES |")
     print("\t+-----------+")
@@ -473,7 +473,7 @@ def comis():
 
 
 def bx_comis():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+-------------------+")
     print("\t| LANÇAR - COMISSÃO |")
     print("\t+-------------------+")
@@ -484,7 +484,7 @@ def bx_comis():
 
 
 def p_comis():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+----------------------+")
     print("\t| PESQUISA - COMISSÕES |")
     print("\t+----------------------+")
@@ -494,7 +494,7 @@ def p_comis():
 
 
 def deb():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+---------+")
     print("\t| DÉBITOS |")
     print("\t+---------+")
@@ -509,7 +509,7 @@ def deb():
 
 
 def cad_deb():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+------------------------+")
     print("\t| CADASTRO - NOVO DÉBITO |")
     print("\t+------------------------+")
@@ -520,7 +520,7 @@ def cad_deb():
 
 
 def p_deb():
-    os.system("clear")
+    os.system("clear || cls")
     print("\t+---------------------------------+")
     print("\t| PESQUISA - CADASTROS DE DEBITOS |")
     print("\t+---------------------------------+")

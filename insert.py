@@ -19,7 +19,7 @@ def data(va):
 
 
 def insert_cpf():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, insira o CPF")
     print("Apenas números.")
     print()
@@ -27,7 +27,7 @@ def insert_cpf():
     verif = verify.checker_cpf_br(cpf)
     while verif != True:
         prt.data_invalid()
-        os.system("clear")
+        os.system("clear || cls")
         print("Por favor, insira o CPF")
         print("Apenas números.")
         print()
@@ -39,7 +39,7 @@ def insert_cpf():
 
 
 def insert_cel():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, digite o celular.")
     print("Exemplo: DD N NNNN NNNN.")
     print()
@@ -50,7 +50,7 @@ def insert_cel():
     verif = verify.checker_cel_br(cel)
     while verif != True:
         prt.data_invalid()
-        os.system("clear")
+        os.system("clear || cls")
         print("Por favor, digite o celular.")
         print("Exemplo: DD N NNNN NNNN.")
         print()
@@ -65,7 +65,7 @@ def insert_cel():
 
 
 def insert_name():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, insira o nome completo")
     print("Apenas letras.")
     print()
@@ -73,7 +73,7 @@ def insert_name():
     verif = verify.checker_name(name)
     while verif != True:
         prt.data_invalid()
-        os.system("clear")
+        os.system("clear || cls")
         print("Por favor, insira o nome completo")
         print("Apenas letras.")
         print()
@@ -85,7 +85,7 @@ def insert_name():
 
 
 def insert_nasciment():
-    os.system("clear") 
+    os.system("clear || cls") 
     print("Por favor, digite a data de nascimento")    
     print()
     print("Exemplo: DDMMAAAA")
@@ -100,7 +100,7 @@ def insert_nasciment():
 
 
 def insert_model():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, insira a marca e o modelo do carro.")
     print("Exemplo: VW-GOL")
     print()
@@ -111,7 +111,7 @@ def insert_model():
 
 
 def insert_id():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, insira o identificador do carro.")
     print("Exemplo: ABC1D23")
     print()
@@ -122,7 +122,7 @@ def insert_id():
 
 
 def insert_problem():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, descreva o problema.")
     print()
     problem = input("Problema: ")
@@ -131,7 +131,7 @@ def insert_problem():
 
 
 def insert_servic():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, descreva o serviço.")
     print()
     servic = input("Serviço: ")
@@ -140,7 +140,7 @@ def insert_servic():
 
 
 def insert_val_servic():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, insira o valor do serviço.")
     print("Apenas números inteiros.")
     print()
@@ -155,7 +155,7 @@ def insert_val_servic():
 
 
 def insert_val_m_obra():
-    os.system("clear")
+    os.system("clear || cls")
     print("Por favor, insira o valor da mão de obra.")
     print("Apenas números inteiros.")
     print()
