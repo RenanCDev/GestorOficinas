@@ -1,6 +1,5 @@
 import os
 import arquivs
-import reload
 
 
 
@@ -21,18 +20,15 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 def data_invalid():
-    reload
     os.system("clear")
     print("ENTRADA INVÁLIDA!!!")
     print()
     input("Pressione ENTER continuar")
     os.system("clear")
-    reload
 
 
 
 def print_client(cpf):
-    reload
     os.system("clear")
     cel = clientes[cpf][0]
     nasc = clientes[cpf][1]
@@ -42,12 +38,10 @@ def print_client(cpf):
     print("Data de nascimento: ", nasc)
     print("Nome: ", name)
     print()
-    reload
 
 
 
 def print_colab(cpf):
-    reload
     os.system("clear")
     cel = colaboradores[cpf][0]
     nasc = colaboradores[cpf][1]
@@ -57,12 +51,10 @@ def print_colab(cpf):
     print("Data de nascimento: ", nasc)
     print("Nome: ", name)
     print()
-    reload
 
 
 
 def print_orcament(id):
-    reload
     os.system("clear")
     orcamentos[id]
     cpf = orcamentos[id][0]
@@ -90,12 +82,10 @@ def print_orcament(id):
     print("Refrigerista: ", mec)
     print()
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
-    reload
 
 
 
 def print_ord_serv_abert(id):
-    reload
     cpf = ord_serv_abert[id][0]
     print("CPF: ",cpf)
     print()
@@ -120,12 +110,10 @@ def print_ord_serv_abert(id):
     mec = ord_serv_abert[id][7]
     print("Refrigerista: ", mec)
     print()
-    reload
 
 
 
 def print_ord_serv_fechad(id):
-    reload
     os.system("clear")
     print("CPF: ",ord_serv_fechad[id][0])
     print()
@@ -143,4 +131,3 @@ def print_ord_serv_fechad(id):
     print()
     print("Refrigerista: ",ord_serv_fechad[id][7])
     print()
-    reload

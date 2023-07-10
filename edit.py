@@ -2,7 +2,6 @@ import os
 import insert
 import prt
 import arquivs
-import reload
 
 
 
@@ -23,7 +22,6 @@ ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
 
 
 def edit_cad_client(cpf):
-    reload
     print(clientes)
     input()
     prt.print_client(cpf)
@@ -56,13 +54,11 @@ def edit_cad_client(cpf):
     clientes[cpf] = [cel, nasciment, name]
     print(clientes)
     arquivs.insert("clientes.dat", clientes)
-    reload
     print(clientes)
 
 
 
 def edit_cad_colab(cpf):
-    reload
     prt.print_colab(cpf)
     edit = input("Deseja alterar o celular? (s/n) ")
     if edit == "s":
@@ -92,12 +88,10 @@ def edit_cad_colab(cpf):
     prt("Cadastro alterado com sucesso!")
     clientes[cpf] = [cel, nasciment, name]
     arquivs.insert("colaboradores.dat", colaboradores)
-    reload
 
 
 
 def edit_orcament(id):
-    reload
     os.system("clear")
     orcamentos[id]
     prt.print_orcament(id)
@@ -152,12 +146,10 @@ def edit_orcament(id):
     model = orcamentos[id][1]
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     arquivs.insert("orcamentos.dat", orcamentos)
-    reload
 
 
 
 def edit_ord_serv_abert(id):
-    reload
     os.system("clear")
     ord_serv_abert[id]
     prt.print_orcament(id)
@@ -212,12 +204,10 @@ def edit_ord_serv_abert(id):
     model = ord_serv_abert[id][1]
     ord_serv_abert[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
-    reload
 
 
 
 def transf_ord_serv_abert(id):
-    reload
     ord_serv_abert[id] = orcamentos[id]
     del(orcamentos[id])
     arquivs.insert("orcamentos.dat", orcamentos)
@@ -239,12 +229,10 @@ def transf_ord_serv_abert(id):
     print()
     print("Refrigerista: ",ord_serv_abert[id][7])
     print()
-    reload
 
 
 
 def transf_ord_serv_fechad(id):
-    reload
     ord_serv_fechad[id] = ord_serv_abert[id]
     del(ord_serv_abert[id])
     arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
@@ -268,28 +256,23 @@ def transf_ord_serv_fechad(id):
     print()
     print("Refrigerista: ",ord_serv_fechad[id][7])
     print()
-    reload
 
 
 
 def exc_client(cpf):  
-    reload
     os.system("clear")
     del clientes[cpf]
     print("Perfil excluido com sucesso!")
     print()
     input("Tecle ENTER para continuar")
     arquivs.insert("clientes.dat", clientes)
-    reload
 
 
 
 def exc_colab(cpf):
-    reload
     os.system("clear")
     del colaboradores[cpf]
     print("Perfil excluido com sucesso!")
     print()
     input("Tecle ENTER para continuar")
     arquivs.insert("colaboradores.dat", colaboradores)
-    reload
