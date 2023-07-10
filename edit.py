@@ -50,7 +50,9 @@ def edit_cad_client(cpf):
     os.system("clear")
     print("Cadastro alterado com sucesso!")
     clientes[cpf] = [cel, nasciment, name]
-    return clientes[cpf]
+    print(clientes)
+    arquivs.insert("clientes.dat", clientes)
+    print(clientes)
 
 
 
@@ -83,7 +85,7 @@ def edit_cad_colab(cpf):
     os.system("clear")
     prt("Cadastro alterado com sucesso!")
     clientes[cpf] = [cel, nasciment, name]
-    return clientes[cpf]
+    arquivs.insert("colaboradores.dat", colaboradores)
 
 
 
@@ -141,7 +143,7 @@ def edit_orcament(id):
             prt.data_invalid()
     model = orcamentos[id][1]
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
-    return orcamentos[id]
+    arquivs.insert("orcamentos.dat", orcamentos)
 
 
 
@@ -199,13 +201,17 @@ def edit_ord_serv_abert(id):
             prt.data_invalid()
     model = ord_serv_abert[id][1]
     ord_serv_abert[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
-    return ord_serv_abert[id]
+    arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
 
 
 
 def transf_ord_serv_abert(id):
     ord_serv_abert[id] = orcamentos[id]
     del(orcamentos[id])
+    arquivs.insert("orcamentos.dat", orcamentos)
+    arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
+    orcamentos = arquivs.read_all("orcamentos.dat")
+    ord_serv_abert = arquivs.read_all("ord_serv_abert.dat") 
     os.system("clear")
     print("CPF: ",ord_serv_abert[id][0])
     print()
@@ -229,6 +235,10 @@ def transf_ord_serv_abert(id):
 def transf_ord_serv_fechad(id):
     ord_serv_fechad[id] = ord_serv_abert[id]
     del(ord_serv_abert[id])
+    arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
+    arquivs.insert("ord_serv_fechad.dat", ord_serv_fechad)
+    ord_serv_abert = arquivs.read_all("ord_serv_abert.dat") 
+    ord_serv_fechad = arquivs.read_all("ord_serv_fechad.dat")
     os.system("clear")
     print("CPF: ",ord_serv_fechad[id][0])
     print()
@@ -255,6 +265,7 @@ def exc_client(cpf):
     print("Perfil excluido com sucesso!")
     print()
     input("Tecle ENTER para continuar")
+    arquivs.insert("clientes.dat", clientes)
 
 
 
@@ -264,6 +275,4 @@ def exc_colab(cpf):
     print("Perfil excluido com sucesso!")
     print()
     input("Tecle ENTER para continuar")
-
-
-
+    arquivs.insert("colaboradores.dat", colaboradores)

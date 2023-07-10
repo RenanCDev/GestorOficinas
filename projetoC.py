@@ -10,6 +10,7 @@ import prt
 import edit
 import opt
 import arquivs
+import reload
 
 
 
@@ -101,7 +102,6 @@ def pesq_clientes():
             if option == "1":
                 cpf
                 clientes[cpf] = edit.edit_cad_client(cpf)
-                arquivs.insert("clientes.dat", clientes)
                 print()
                 input("Tecle ENTER para continuar")
             elif option == "2":
@@ -109,19 +109,17 @@ def pesq_clientes():
                 exc = input("Deseja mesmo excluir esse perfil? (s/n) ")
                 if exc == "s":
                     edit.exc_client(cpf)
-                    arquivs.insert("clientes.dat", clientes)
                 elif exc != "n" and exc != "s":
                     prt.data_invalid()
             else:
-                os.system("clear")
+                prt.data_invalid()
                 input("Tecle ENTER para continuar")
-        else:
-            prt.data_invalid()
     else:
         os.system("clear")
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
+    reload
 
 
 
@@ -169,7 +167,6 @@ def pesq_colab():
             if option == "1":
                 cpf
                 colaboradores[cpf] = edit.edit_cad_colab(cpf)
-                arquivs.insert("colaboradores.dat", colaboradores)
                 print("Cadastro alterado com sucesso!")
                 print()
                 input("Tecle ENTER para continuar")
@@ -178,7 +175,6 @@ def pesq_colab():
                 exc = input("Deseja mesmo excluir esse perfil? (s/n) ")
                 if exc == "s":
                     edit.exc_colab(cpf)
-                    arquivs.insert("colaboradores.dat", colaboradores)
                 elif exc != "n" and exc != "s":
                     prt.data_invalid()
             else:
@@ -190,6 +186,7 @@ def pesq_colab():
         print("CPF NÃO CADASTRADO!!!")
         print()
         input("Tecle ENTER para continuar")
+    reload
 
 
 
@@ -226,7 +223,6 @@ def cad_orcament():
         os.system("clear")
         mec = input("Refrigerista: ")
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
-        arquivs.insert("orcamentos.dat", orcamentos)
     else:
         print("CPF NÃO CADASTRADO!!!")
         print()
@@ -259,8 +255,6 @@ def pesq_orcament():
                     print()
                     input("Tecle ENTER para continuar")
                     edit.transf_ord_serv_abert(id)
-                    arquivs.insert("orcamentos.dat", orcamentos)
-                    arquivs.insert("ord_serv_abert.dat", ord_serv_abert)
                 elif option == "2":
                     orcamentos[id] = edit.edit_orcament(id)
                     arquivs.insert("orcamentos.dat", orcamentos)
