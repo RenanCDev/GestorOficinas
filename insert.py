@@ -166,3 +166,23 @@ def insert_val_m_obra():
         val_m_obra = input("Valor da mão de obra: ")
         verif = val_m_obra.isdigit()
     return int(val_m_obra)
+
+
+
+def insert_refrigerist():
+    os.system("clear || cls")
+    print("Por favor, insira o CPF do refrigerista")
+    print("Apenas números.")
+    print()
+    cpf = input("CPF: ")
+    verif = verify.checker_cpf_br(cpf)
+    while verif != True:
+        prt.data_invalid()
+        os.system("clear || cls")
+        print("Por favor, insira o CPF do refrigerista")
+        print("Apenas números.")
+        print()
+        cpf = input("CPF: ")
+        verif = verify.checker_cpf_br(cpf)
+    cpf = data(cpf)
+    return cpf

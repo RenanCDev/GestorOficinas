@@ -141,7 +141,11 @@ def edit_orcament(id):
     edit = input("Deseja alterar o refrigerista? (s/n) ")
     if edit == "s":
         os.system("clear || cls")
-        mec = input("Novo refrigerista: ") 
+        mec = insert.insert_refrigerist()
+        while mec not in colaboradores:
+            print("REFRIGERISTA NÃO CADASTRADO!!!")
+            input("Tecle ENTER para inserir novamente")
+            mec = insert.insert_refrigerist()
     else:
         mec = orcamentos[id][7]
         if edit != "n":
@@ -203,7 +207,11 @@ def edit_ord_serv_abert(id):
     edit = input("Deseja alterar o refrigerista? (s/n) ")
     if edit == "s":
         os.system("clear || cls")
-        mec = input("Novo refrigerista: ") 
+        mec = insert.insert_refrigerist()
+        while mec not in colaboradores:
+            print("REFRIGERISTA NÃO CADASTRADO!!!")
+            input("Tecle ENTER para inserir novamente")
+            mec = insert.insert_refrigerist()
     else:
         mec = ord_serv_abert[id][7]
         if edit != "n":

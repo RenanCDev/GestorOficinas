@@ -91,6 +91,10 @@ def print_orcament(id):
     mec = orcamentos[id][7]
     print("Refrigerista: ", mec)
     print()
+    cpf_refri = orcamentos[id][7]
+    refrigerist = colaboradores[cpf_refri][2]
+    print("Refrigerista: ", refrigerist)
+    print()
     orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
@@ -98,6 +102,7 @@ def print_orcament(id):
 
 def print_ord_serv_abert(id):
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+    os.system("clear")
     cpf = ord_serv_abert[id][0]
     print("CPF: ",cpf)
     print()
@@ -123,7 +128,11 @@ def print_ord_serv_abert(id):
     print("Valor da mão de obra: ", val_m_obra)
     print()
     mec = ord_serv_abert[id][7]
-    print("Refrigerista: ", mec)
+    print("CPF do refrigerista: ", mec)
+    print()
+    cpf_refri = ord_serv_abert[id][7]
+    refrigerist = colaboradores[cpf_refri][2]
+    print("Refrigerista: ", refrigerist)
     print()
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
 
@@ -150,6 +159,26 @@ def print_ord_serv_fechad(id):
     print()
     print("Valor da mão de obra: ",ord_serv_fechad[id][6])
     print()
-    print("Refrigerista: ",ord_serv_fechad[id][7])
+    mec = ord_serv_fechad[id][7]
+    print("CPF do refrigerista: ", mec)
+    print()
+    cpf_refri = ord_serv_fechad[id][7]
+    refrigerist = colaboradores[cpf_refri][2]
+    print("Refrigerista: ", refrigerist)
     print()
     clientes, colaboradores, orcamentos, ord_serv_abert, ord_serv_fechad = reload.get_dados()
+
+
+
+def print_creditos():
+    print("#PROGRAMA IDEALIZADO E DEZENVOLVIDO POR: RENAN MISSIAS RODRIGUES ALVES DA COSTA##")
+    print("#NÚMERO DE MATRICULA: 20230078244#")
+    print("#COLABORADORES E CONSULTORES:#")
+    print("##PROFESSOR - FLAVIUS GORGONIO##")
+    print("##ALUNO - GUILHERME DE MEDEIROS SANTOS - 20230032755##")
+    print("##ALUNO - DENNER BISMARCK DE LUCENA FRANÇA - 20230031014##")
+    print("##ALUNO - ARON DA SILVA BEZERRA - 20230059632##")
+    print("##ALUNO - JEFERSON HENRIQUE SOBRINHO - 20230064991##")
+    print("##ALUNO - MARLISON SOARES DA SILVA - 20230035407##")
+    print("")
+    input("Tecle ENTER para continuar")

@@ -235,7 +235,11 @@ def cad_orcament():
         val_servic = insert.insert_val_servic()
         val_m_obra = insert.insert_val_m_obra()
         os.system("clear || cls")
-        mec = input("Refrigerista: ")
+        mec = insert.insert_refrigerist()
+        while mec not in colaboradores:
+            print("REFRIGERISTA NÃO CADASTRADO!!!")
+            input("Tecle ENTER para inserir novamente")
+            mec = insert.insert_refrigerist()
         orcamentos[id] = [cpf, model, id, problem, servic, val_servic, val_m_obra, mec]
         arquivs.insert("orcamentos.dat", orcamentos)
     else:
@@ -538,7 +542,8 @@ def p_deb():
 ######################
 
 
-
+os.system("clear")
+prt.print_creditos()
 op1 = main_menu()
 while op1 != "0":
     if op1 == "1":
